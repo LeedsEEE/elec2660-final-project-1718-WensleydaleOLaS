@@ -27,11 +27,11 @@
 -(void)Boost{
     /*SKAction *MoveUp = [SKAction moveByX:0 y:30 duration:0.2];
     [self runAction:MoveUp];*/
-    [self.physicsBody applyImpulse:CGVectorMake(0,200)];
+    [self.physicsBody applyImpulse:CGVectorMake(0,100)];
 }
 
 -(void)Start_The_Move{
-    SKAction *Increment = [SKAction moveByX:5 y:0 duration:0.03];
+    SKAction *Increment = [SKAction moveByX:1 y:0 duration:0.03];
     SKAction *Move_The_World = [SKAction repeatActionForever:Increment];
     [self runAction:Move_The_World];
 }

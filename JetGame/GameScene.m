@@ -15,7 +15,7 @@
 {
     Player_Entity *Jet;
     SKNode *World;
-
+    World_Generator *Generator;
 }
 
 
@@ -32,12 +32,15 @@
     [self addChild:World];
     
     
-    SKSpriteNode *Ocean = [SKSpriteNode spriteNodeWithColor:[UIColor blueColor] size:CGSizeMake(self.frame.size.width, 100)];
+    /* Removed as no longer needed, world generator has taken over rendering the ocean
+     SKSpriteNode *Ocean = [SKSpriteNode spriteNodeWithColor:[UIColor blueColor] size:CGSizeMake(self.frame.size.width, 100)];
     Ocean.position = CGPointMake(0, -200);
     Ocean.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.frame.size.width, 100)];
     Ocean.physicsBody.dynamic = NO;
-    [World addChild:Ocean];
+    [World addChild:Ocean];*/
 
+    Generator = [World_Generator Inital_Generate_World:World];
+    [Generator Initallise_Ground];
     
     Jet = [Player_Entity player_entity];
     [World addChild:Jet];
@@ -61,7 +64,7 @@
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     if (!self.Started){  // Used to start the game with a touch
         [self Start_The_Game_Already];
-    }else if (self.Started){ // Used to clear the screen once a fail state has been reached
+    }else if (self.Game_over){ // Used to clear the screen once a fail state has been reached
         [self Clear_Screen];
     }else{ // Used to move the player when the game is still running
         [Jet Boost];
