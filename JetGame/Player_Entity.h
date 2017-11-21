@@ -12,5 +12,6 @@
 
 +(id)player_entity;
 -(void)Boost;
+-(void)Start_The_Move;
 
 @end

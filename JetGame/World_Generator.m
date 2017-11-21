@@ -10,4 +10,8 @@
 
 @implementation World_Generator
 
+
++(id)Inital_Generate_World{
+    return self;
+}
 @end

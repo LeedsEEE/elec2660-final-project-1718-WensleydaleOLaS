@@ -11,5 +11,6 @@
 #import "World_Generator.h"
 
 @interface GameScene : SKScene
-
+@property Boolean Started;
+@property Boolean Game_over;
 @end
