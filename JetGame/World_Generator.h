@@ -1,5 +1,5 @@
 //
-//  GameScene.h
+//  World_Generator.h
 //  JetGame
 //
 //  Created by Andrew Moore [el16ajm] on 21/11/2017.
@@ -7,9 +7,7 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
-#import "Player_Entity.h"
-#import "World_Generator.h"
 
-@interface GameScene : SKScene
+@interface World_Generator : SKSpriteNode
 
 @end

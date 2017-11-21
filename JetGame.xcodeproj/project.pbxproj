@@ -18,6 +18,9 @@
 		959710601FC47CF000583802 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9597105E1FC47CF000583802 /* LaunchScreen.storyboard */; };
 		9597106B1FC47CF000583802 /* JetGameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9597106A1FC47CF000583802 /* JetGameTests.m */; };
 		959710761FC47CF000583802 /* JetGameUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 959710751FC47CF000583802 /* JetGameUITests.m */; };
+		959710851FC47F0400583802 /* Player_Entity.m in Sources */ = {isa = PBXBuildFile; fileRef = 959710841FC47F0400583802 /* Player_Entity.m */; };
+		959710881FC47F1600583802 /* World_Generator.m in Sources */ = {isa = PBXBuildFile; fileRef = 959710871FC47F1600583802 /* World_Generator.m */; };
+		9597108D1FC48F9200583802 /* jet_silhouette.png in Resources */ = {isa = PBXBuildFile; fileRef = 9597108C1FC48F9200583802 /* jet_silhouette.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +61,11 @@
 		959710711FC47CF000583802 /* JetGameUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JetGameUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		959710751FC47CF000583802 /* JetGameUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JetGameUITests.m; sourceTree = "<group>"; };
 		959710771FC47CF000583802 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		959710831FC47F0400583802 /* Player_Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player_Entity.h; sourceTree = "<group>"; };
+		959710841FC47F0400583802 /* Player_Entity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player_Entity.m; sourceTree = "<group>"; };
+		959710861FC47F1600583802 /* World_Generator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = World_Generator.h; sourceTree = "<group>"; };
+		959710871FC47F1600583802 /* World_Generator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = World_Generator.m; sourceTree = "<group>"; };
+		9597108C1FC48F9200583802 /* jet_silhouette.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jet_silhouette.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,12 +116,17 @@
 		959710481FC47CF000583802 /* JetGame */ = {
 			isa = PBXGroup;
 			children = (
+				959710891FC48F1800583802 /* Assests */,
 				9597104C1FC47CF000583802 /* AppDelegate.h */,
 				9597104D1FC47CF000583802 /* AppDelegate.m */,
 				9597104F1FC47CF000583802 /* GameScene.sks */,
 				959710511FC47CF000583802 /* Actions.sks */,
 				959710531FC47CF000583802 /* GameScene.h */,
 				959710541FC47CF000583802 /* GameScene.m */,
+				959710831FC47F0400583802 /* Player_Entity.h */,
+				959710841FC47F0400583802 /* Player_Entity.m */,
+				959710861FC47F1600583802 /* World_Generator.h */,
+				959710871FC47F1600583802 /* World_Generator.m */,
 				959710561FC47CF000583802 /* GameViewController.h */,
 				959710571FC47CF000583802 /* GameViewController.m */,
 				959710591FC47CF000583802 /* Main.storyboard */,
@@ -149,6 +162,14 @@
 				959710771FC47CF000583802 /* Info.plist */,
 			);
 			path = JetGameUITests;
+			sourceTree = "<group>";
+		};
+		959710891FC48F1800583802 /* Assests */ = {
+			isa = PBXGroup;
+			children = (
+				9597108C1FC48F9200583802 /* jet_silhouette.png */,
+			);
+			name = Assests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,6 +283,7 @@
 				9597105D1FC47CF000583802 /* Assets.xcassets in Resources */,
 				959710601FC47CF000583802 /* LaunchScreen.storyboard in Resources */,
 				959710521FC47CF000583802 /* Actions.sks in Resources */,
+				9597108D1FC48F9200583802 /* jet_silhouette.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,7 +310,9 @@
 			files = (
 				959710581FC47CF000583802 /* GameViewController.m in Sources */,
 				9597104E1FC47CF000583802 /* AppDelegate.m in Sources */,
+				959710881FC47F1600583802 /* World_Generator.m in Sources */,
 				959710551FC47CF000583802 /* GameScene.m in Sources */,
+				959710851FC47F0400583802 /* Player_Entity.m in Sources */,
 				9597104B1FC47CF000583802 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
