@@ -1,0 +1,544 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9597104B1FC47CF000583802 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9597104A1FC47CF000583802 /* main.m */; };
+		9597104E1FC47CF000583802 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9597104D1FC47CF000583802 /* AppDelegate.m */; };
+		959710501FC47CF000583802 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9597104F1FC47CF000583802 /* GameScene.sks */; };
+		959710521FC47CF000583802 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 959710511FC47CF000583802 /* Actions.sks */; };
+		959710551FC47CF000583802 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 959710541FC47CF000583802 /* GameScene.m */; };
+		959710581FC47CF000583802 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 959710571FC47CF000583802 /* GameViewController.m */; };
+		9597105B1FC47CF000583802 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 959710591FC47CF000583802 /* Main.storyboard */; };
+		9597105D1FC47CF000583802 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9597105C1FC47CF000583802 /* Assets.xcassets */; };
+		959710601FC47CF000583802 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9597105E1FC47CF000583802 /* LaunchScreen.storyboard */; };
+		9597106B1FC47CF000583802 /* JetGameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9597106A1FC47CF000583802 /* JetGameTests.m */; };
+		959710761FC47CF000583802 /* JetGameUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 959710751FC47CF000583802 /* JetGameUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		959710671FC47CF000583802 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9597103E1FC47CF000583802 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 959710451FC47CF000583802;
+			remoteInfo = JetGame;
+		};
+		959710721FC47CF000583802 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9597103E1FC47CF000583802 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 959710451FC47CF000583802;
+			remoteInfo = JetGame;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		959710461FC47CF000583802 /* JetGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JetGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9597104A1FC47CF000583802 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9597104C1FC47CF000583802 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		9597104D1FC47CF000583802 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		9597104F1FC47CF000583802 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		959710511FC47CF000583802 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
+		959710531FC47CF000583802 /* GameScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
+		959710541FC47CF000583802 /* GameScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
+		959710561FC47CF000583802 /* GameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
+		959710571FC47CF000583802 /* GameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
+		9597105A1FC47CF000583802 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9597105C1FC47CF000583802 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9597105F1FC47CF000583802 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		959710611FC47CF000583802 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		959710661FC47CF000583802 /* JetGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JetGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9597106A1FC47CF000583802 /* JetGameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JetGameTests.m; sourceTree = "<group>"; };
+		9597106C1FC47CF000583802 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		959710711FC47CF000583802 /* JetGameUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JetGameUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		959710751FC47CF000583802 /* JetGameUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JetGameUITests.m; sourceTree = "<group>"; };
+		959710771FC47CF000583802 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		959710431FC47CF000583802 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		959710631FC47CF000583802 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9597106E1FC47CF000583802 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9597103D1FC47CF000583802 = {
+			isa = PBXGroup;
+			children = (
+				959710481FC47CF000583802 /* JetGame */,
+				959710691FC47CF000583802 /* JetGameTests */,
+				959710741FC47CF000583802 /* JetGameUITests */,
+				959710471FC47CF000583802 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		959710471FC47CF000583802 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				959710461FC47CF000583802 /* JetGame.app */,
+				959710661FC47CF000583802 /* JetGameTests.xctest */,
+				959710711FC47CF000583802 /* JetGameUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		959710481FC47CF000583802 /* JetGame */ = {
+			isa = PBXGroup;
+			children = (
+				9597104C1FC47CF000583802 /* AppDelegate.h */,
+				9597104D1FC47CF000583802 /* AppDelegate.m */,
+				9597104F1FC47CF000583802 /* GameScene.sks */,
+				959710511FC47CF000583802 /* Actions.sks */,
+				959710531FC47CF000583802 /* GameScene.h */,
+				959710541FC47CF000583802 /* GameScene.m */,
+				959710561FC47CF000583802 /* GameViewController.h */,
+				959710571FC47CF000583802 /* GameViewController.m */,
+				959710591FC47CF000583802 /* Main.storyboard */,
+				9597105C1FC47CF000583802 /* Assets.xcassets */,
+				9597105E1FC47CF000583802 /* LaunchScreen.storyboard */,
+				959710611FC47CF000583802 /* Info.plist */,
+				959710491FC47CF000583802 /* Supporting Files */,
+			);
+			path = JetGame;
+			sourceTree = "<group>";
+		};
+		959710491FC47CF000583802 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9597104A1FC47CF000583802 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		959710691FC47CF000583802 /* JetGameTests */ = {
+			isa = PBXGroup;
+			children = (
+				9597106A1FC47CF000583802 /* JetGameTests.m */,
+				9597106C1FC47CF000583802 /* Info.plist */,
+			);
+			path = JetGameTests;
+			sourceTree = "<group>";
+		};
+		959710741FC47CF000583802 /* JetGameUITests */ = {
+			isa = PBXGroup;
+			children = (
+				959710751FC47CF000583802 /* JetGameUITests.m */,
+				959710771FC47CF000583802 /* Info.plist */,
+			);
+			path = JetGameUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		959710451FC47CF000583802 /* JetGame */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9597107A1FC47CF000583802 /* Build configuration list for PBXNativeTarget "JetGame" */;
+			buildPhases = (
+				959710421FC47CF000583802 /* Sources */,
+				959710431FC47CF000583802 /* Frameworks */,
+				959710441FC47CF000583802 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JetGame;
+			productName = JetGame;
+			productReference = 959710461FC47CF000583802 /* JetGame.app */;
+			productType = "com.apple.product-type.application";
+		};
+		959710651FC47CF000583802 /* JetGameTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9597107D1FC47CF000583802 /* Build configuration list for PBXNativeTarget "JetGameTests" */;
+			buildPhases = (
+				959710621FC47CF000583802 /* Sources */,
+				959710631FC47CF000583802 /* Frameworks */,
+				959710641FC47CF000583802 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				959710681FC47CF000583802 /* PBXTargetDependency */,
+			);
+			name = JetGameTests;
+			productName = JetGameTests;
+			productReference = 959710661FC47CF000583802 /* JetGameTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		959710701FC47CF000583802 /* JetGameUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 959710801FC47CF000583802 /* Build configuration list for PBXNativeTarget "JetGameUITests" */;
+			buildPhases = (
+				9597106D1FC47CF000583802 /* Sources */,
+				9597106E1FC47CF000583802 /* Frameworks */,
+				9597106F1FC47CF000583802 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				959710731FC47CF000583802 /* PBXTargetDependency */,
+			);
+			name = JetGameUITests;
+			productName = JetGameUITests;
+			productReference = 959710711FC47CF000583802 /* JetGameUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9597103E1FC47CF000583802 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = "University of Leeds";
+				TargetAttributes = {
+					959710451FC47CF000583802 = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+					};
+					959710651FC47CF000583802 = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 959710451FC47CF000583802;
+					};
+					959710701FC47CF000583802 = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 959710451FC47CF000583802;
+					};
+				};
+			};
+			buildConfigurationList = 959710411FC47CF000583802 /* Build configuration list for PBXProject "JetGame" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9597103D1FC47CF000583802;
+			productRefGroup = 959710471FC47CF000583802 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				959710451FC47CF000583802 /* JetGame */,
+				959710651FC47CF000583802 /* JetGameTests */,
+				959710701FC47CF000583802 /* JetGameUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		959710441FC47CF000583802 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9597105B1FC47CF000583802 /* Main.storyboard in Resources */,
+				959710501FC47CF000583802 /* GameScene.sks in Resources */,
+				9597105D1FC47CF000583802 /* Assets.xcassets in Resources */,
+				959710601FC47CF000583802 /* LaunchScreen.storyboard in Resources */,
+				959710521FC47CF000583802 /* Actions.sks in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		959710641FC47CF000583802 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9597106F1FC47CF000583802 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		959710421FC47CF000583802 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				959710581FC47CF000583802 /* GameViewController.m in Sources */,
+				9597104E1FC47CF000583802 /* AppDelegate.m in Sources */,
+				959710551FC47CF000583802 /* GameScene.m in Sources */,
+				9597104B1FC47CF000583802 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		959710621FC47CF000583802 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9597106B1FC47CF000583802 /* JetGameTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9597106D1FC47CF000583802 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				959710761FC47CF000583802 /* JetGameUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		959710681FC47CF000583802 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 959710451FC47CF000583802 /* JetGame */;
+			targetProxy = 959710671FC47CF000583802 /* PBXContainerItemProxy */;
+		};
+		959710731FC47CF000583802 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 959710451FC47CF000583802 /* JetGame */;
+			targetProxy = 959710721FC47CF000583802 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		959710591FC47CF000583802 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9597105A1FC47CF000583802 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9597105E1FC47CF000583802 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9597105F1FC47CF000583802 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		959710781FC47CF000583802 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		959710791FC47CF000583802 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9597107B1FC47CF000583802 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = JetGame/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.leeds.JetGame;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		9597107C1FC47CF000583802 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = JetGame/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.leeds.JetGame;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		9597107E1FC47CF000583802 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = JetGameTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.leeds.JetGameTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JetGame.app/JetGame";
+			};
+			name = Debug;
+		};
+		9597107F1FC47CF000583802 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = JetGameTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.leeds.JetGameTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JetGame.app/JetGame";
+			};
+			name = Release;
+		};
+		959710811FC47CF000583802 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = JetGameUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.leeds.JetGameUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = JetGame;
+			};
+			name = Debug;
+		};
+		959710821FC47CF000583802 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = JetGameUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.leeds.JetGameUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = JetGame;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		959710411FC47CF000583802 /* Build configuration list for PBXProject "JetGame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				959710781FC47CF000583802 /* Debug */,
+				959710791FC47CF000583802 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9597107A1FC47CF000583802 /* Build configuration list for PBXNativeTarget "JetGame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9597107B1FC47CF000583802 /* Debug */,
+				9597107C1FC47CF000583802 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		9597107D1FC47CF000583802 /* Build configuration list for PBXNativeTarget "JetGameTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9597107E1FC47CF000583802 /* Debug */,
+				9597107F1FC47CF000583802 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		959710801FC47CF000583802 /* Build configuration list for PBXNativeTarget "JetGameUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				959710811FC47CF000583802 /* Debug */,
+				959710821FC47CF000583802 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9597103E1FC47CF000583802 /* Project object */;
+}
