@@ -10,7 +10,7 @@
 #import "Player_Entity.h"
 #import "World_Generator.h"
 
-@interface GameScene : SKScene
+@interface GameScene : SKScene <SKPhysicsContactDelegate>
 @property Boolean Started;
 @property Boolean Game_over;
 @end

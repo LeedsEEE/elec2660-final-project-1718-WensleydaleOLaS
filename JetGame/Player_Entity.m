@@ -13,6 +13,10 @@
 
 @implementation Player_Entity
 
+static const __UINT32_TYPE__ PlayerCatagory= 0x1 << 0;
+static const __UINT32_TYPE__ RockCatagory= 0x1 << 1;
+static const __UINT32_TYPE__ OceanCatagory= 0x1 << 3;
+
 + (id)player_entity{
     //Player_Entity *player_entity = [Player_Entity spriteNodeWithColor:[UIColor redColor] size:CGSizeMake(50,50)];
     
@@ -21,6 +25,8 @@
     player_entity.yScale = 0.04;
     player_entity.name = @"Jet";
     player_entity.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(101,64)];
+    player_entity.physicsBody.categoryBitMask = PlayerCatagory;
+    player_entity.physicsBody.contactTestBitMask = RockCatagory | ~OceanCatagory;
     return player_entity;
 }
 
@@ -31,7 +37,7 @@
 }
 
 -(void)Start_The_Move{
-    SKAction *Increment = [SKAction moveByX:1 y:0 duration:0.03];
+    SKAction *Increment = [SKAction moveByX:20 y:0 duration:0.03];
     SKAction *Move_The_World = [SKAction repeatActionForever:Increment];
     [self runAction:Move_The_World];
 }

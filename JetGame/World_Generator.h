@@ -17,7 +17,10 @@
 @property double Current_Cloud_H;
 @property double Current_Cloud_W;
 @property SKNode *World;
+@property NSInteger WetWidth;
 +(id)Inital_Generate_World:(SKNode *)World;
 -(void)Continious_Generate;
--(void)Initallise_Ground;
+-(void)Initallise_Ocean;
+-(void)Generate_A_Ocean;
+-(void)Generate_A_Rock;
 @end
