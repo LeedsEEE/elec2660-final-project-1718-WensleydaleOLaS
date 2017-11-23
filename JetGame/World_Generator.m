@@ -39,7 +39,7 @@
 
 - (void)Generate_A_Ground{
     
-    int WetWidth = 500; //Width of each ocean 'block'
+    int WetWidth = 100; //Width of each ocean 'block'
     
     SKSpriteNode *Ocean = [SKSpriteNode spriteNodeWithColor:[UIColor blueColor] size:CGSizeMake(WetWidth, 100)];
     Ocean.position = CGPointMake(self.Current_X, -200);
