@@ -76,6 +76,7 @@
         SKSpriteNode *Boom = [SKSpriteNode spriteNodeWithColor:[UIColor redColor] size:CGSizeMake(5, 5)];
         Boom.position = CGPointMake(Jet.position.x + RandX, Jet.position.y + RandY);
         Boom.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(5, 5)];
+        
         Boom.zPosition = 5;
         [World addChild:Boom];
     }
