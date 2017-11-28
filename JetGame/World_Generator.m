@@ -65,11 +65,11 @@ static const __UINT32_TYPE__ OceanCatagory= 0x1 << 3;
 
 - (void)Generate_A_Rock{
     
-    int Rand = arc4random() % 100 +50;
-    int Rand2 = arc4random() % 200 + 400;
-    SKSpriteNode *Rock = [SKSpriteNode spriteNodeWithColor:([UIColor blackColor]) size:CGSizeMake(20, Rand)];
+    int Rand = (arc4random() % 200 ) + 150;
+    int Rand2 = (arc4random() % 200 ) + 400;
+    SKSpriteNode *Rock = [SKSpriteNode spriteNodeWithColor:([UIColor blackColor]) size:CGSizeMake(40, Rand)];
     Rock.position = CGPointMake(self.Current_Rock_X + Rand2, -180);
-    Rock.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(20, Rand)];
+    Rock.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(0,0)];//40, Rand)];
     Rock.physicsBody.dynamic = NO;
     Rock.name = @"Rock";
     Rock.zPosition = -1;
@@ -81,8 +81,8 @@ static const __UINT32_TYPE__ OceanCatagory= 0x1 << 3;
 
 - (void)Generate_A_Cloud{
     
-    int Rand = arc4random() % 400 + 200;
-    int Rand2 = arc4random() % 100 + 50;
+    int Rand = arc4random() % 200 + 100;
+    int Rand2 = arc4random() % 50 + 25;
     SKSpriteNode *Cloud = [SKSpriteNode spriteNodeWithColor:([UIColor grayColor]) size:CGSizeMake(Rand, Rand2)];
     Cloud.position = CGPointMake(self.Current_Cloud_X, +220);
     Cloud.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(Rand, Rand2)];

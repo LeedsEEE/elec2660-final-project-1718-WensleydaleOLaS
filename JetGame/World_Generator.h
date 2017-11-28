@@ -11,11 +11,8 @@
 @interface World_Generator : SKSpriteNode
 @property double Current_X;
 @property double Current_Rock_X;
-@property double Current_Rock_H;
 @property double Current_Cloud_X;
-@property double Current_Cloud_Y;
-@property double Current_Cloud_H;
-@property double Current_Cloud_W;
+//Removed Properties that are not needed due to how the spirtenodes work
 @property SKNode *World;
 @property NSInteger WetWidth;
 +(id)Inital_Generate_World:(SKNode *)World;
