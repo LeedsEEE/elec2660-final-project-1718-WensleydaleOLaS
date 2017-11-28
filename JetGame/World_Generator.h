@@ -23,4 +23,5 @@
 -(void)Initallise_Ocean;
 -(void)Generate_A_Ocean;
 -(void)Generate_A_Rock;
+-(void)Generate_A_Cloud;
 @end

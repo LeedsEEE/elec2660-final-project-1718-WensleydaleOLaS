@@ -11,8 +11,11 @@
 
 @implementation World_Generator
 
+
 static const __UINT32_TYPE__ RockCatagory= 0x1 << 1;
+static const __UINT32_TYPE__ CloudCatagory= 0x1 << 2;
 static const __UINT32_TYPE__ OceanCatagory= 0x1 << 3;
+
 
 +(id)Inital_Generate_World:(SKNode *)World{
     
@@ -22,6 +25,7 @@ static const __UINT32_TYPE__ OceanCatagory= 0x1 << 3;
     Generator.Current_Rock_X = 100;
     Generator.World= World;
     Generator.WetWidth = 767;
+    Generator.Current_Cloud_X = -200;
     
     return Generator;
 }
@@ -39,7 +43,9 @@ static const __UINT32_TYPE__ OceanCatagory= 0x1 << 3;
     for( int i =0; i < 3; i++){
         [self Generate_A_Ocean];
         [self Generate_A_Rock];
-
+        for (int j = 0; j < 3; j++){
+            [self Generate_A_Cloud];
+        }
     }
 }
 
@@ -59,12 +65,11 @@ static const __UINT32_TYPE__ OceanCatagory= 0x1 << 3;
 
 - (void)Generate_A_Rock{
     
-    int Rand = arc4random() % 100;
+    int Rand = arc4random() % 100 +50;
     int Rand2 = arc4random() % 200 + 400;
-    int Height = (Rand ) + 50;
-    SKSpriteNode *Rock = [SKSpriteNode spriteNodeWithColor:([UIColor blackColor]) size:CGSizeMake(20, Height)];
+    SKSpriteNode *Rock = [SKSpriteNode spriteNodeWithColor:([UIColor blackColor]) size:CGSizeMake(20, Rand)];
     Rock.position = CGPointMake(self.Current_Rock_X + Rand2, -180);
-    Rock.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(20, Height)];
+    Rock.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(20, Rand)];
     Rock.physicsBody.dynamic = NO;
     Rock.name = @"Rock";
     Rock.zPosition = -1;
@@ -73,5 +78,22 @@ static const __UINT32_TYPE__ OceanCatagory= 0x1 << 3;
 
     self.Current_Rock_X += Rand2;
 }
+
+- (void)Generate_A_Cloud{
+    
+    int Rand = arc4random() % 400 + 200;
+    int Rand2 = arc4random() % 100 + 50;
+    SKSpriteNode *Cloud = [SKSpriteNode spriteNodeWithColor:([UIColor grayColor]) size:CGSizeMake(Rand, Rand2)];
+    Cloud.position = CGPointMake(self.Current_Cloud_X, +220);
+    Cloud.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(Rand, Rand2)];
+    Cloud.physicsBody.dynamic = NO;
+    Cloud.name = @"Cloud";
+    Cloud.zPosition = -1;
+    Cloud.physicsBody.categoryBitMask = CloudCatagory;
+    [self.World addChild:Cloud];
+    
+    self.Current_Cloud_X += Rand;
+}
+
 
 @end

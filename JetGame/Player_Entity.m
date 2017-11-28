@@ -13,9 +13,11 @@
 
 @implementation Player_Entity
 
-static const __UINT32_TYPE__ PlayerCatagory= 0x1 << 0;
+static const __UINT32_TYPE__ PlayerCatagory= 0x1 << 10;
 static const __UINT32_TYPE__ RockCatagory= 0x1 << 1;
+static const __UINT32_TYPE__ CloudCatagory= 0x1 << 2;
 static const __UINT32_TYPE__ OceanCatagory= 0x1 << 3;
+static const __UINT32_TYPE__ BoomCatagory= 0x1 << 4;
 
 + (id)player_entity{
     //Player_Entity *player_entity = [Player_Entity spriteNodeWithColor:[UIColor redColor] size:CGSizeMake(50,50)];
@@ -26,7 +28,9 @@ static const __UINT32_TYPE__ OceanCatagory= 0x1 << 3;
     player_entity.name = @"Jet";
     player_entity.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(101,64)];
     player_entity.physicsBody.categoryBitMask = PlayerCatagory;
-    player_entity.physicsBody.contactTestBitMask = RockCatagory | ~OceanCatagory;
+    player_entity.physicsBody.contactTestBitMask = RockCatagory | CloudCatagory| ~OceanCatagory | ~BoomCatagory;
+    player_entity.physicsBody.collisionBitMask = OceanCatagory | RockCatagory | ~CloudCatagory | ~BoomCatagory;
+    player_entity.physicsBody.dynamic = NO;
     return player_entity;
 }
 
@@ -37,8 +41,14 @@ static const __UINT32_TYPE__ OceanCatagory= 0x1 << 3;
 }
 
 -(void)Start_The_Move{
+    self.physicsBody.dynamic = YES;
     SKAction *Increment = [SKAction moveByX:20 y:0 duration:0.03];
     SKAction *Move_The_World = [SKAction repeatActionForever:Increment];
-    [self runAction:Move_The_World];
+    [self runAction:Move_The_World withKey:@"Mover"];
+}
+
+-(void)Stop_The_Move{
+    [self removeActionForKey:@"Mover"];
+    self.physicsBody.dynamic = NO;
 }
 @end
