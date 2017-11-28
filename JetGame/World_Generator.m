@@ -94,6 +94,7 @@ static const __UINT32_TYPE__ OceanCatagory= 0x1 << 3;
     
     self.Current_Cloud_X += Rand;
 }
+//
 
 
 @end

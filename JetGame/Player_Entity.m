@@ -51,4 +51,5 @@ static const __UINT32_TYPE__ BoomCatagory= 0x1 << 4;
     [self removeActionForKey:@"Mover"];
     self.physicsBody.dynamic = NO;
 }
+//
 @end

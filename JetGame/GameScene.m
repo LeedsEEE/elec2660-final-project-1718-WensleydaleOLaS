@@ -105,7 +105,7 @@ static const __UINT32_TYPE__ BoomCatagory= 0x1 << 4;
 }
 
 -(void)Clear_Screen{
-    [World removeAllChildren];
+    [World removeAllChildren]; //Clears all entities
 }
 
 -(void)didBeginContact:(SKPhysicsContact *)contact{
