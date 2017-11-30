@@ -9,7 +9,7 @@
 #import "GameScene.h"
 
 //The overall structure, basic functions and game logic of the program are based on Micheal Leech's how to make a 2d game series on Youtube **linked here**
-static const __UINT32_TYPE__ BoomCatagory= 0x1 << 4;
+//static const __UINT32_TYPE__ BoomCatagory= 0x1 << 4;
 
 @implementation GameScene
 {
@@ -17,7 +17,7 @@ static const __UINT32_TYPE__ BoomCatagory= 0x1 << 4;
     SKNode *World;
     SKLabelNode *Score;
     World_Generator *Generator;
-    int ThePoints;
+    NSInteger ThePoints;
 }
 
 
@@ -49,6 +49,19 @@ static const __UINT32_TYPE__ BoomCatagory= 0x1 << 4;
 -(void)Start_Screen{
     self.Game_over = false;
     
+    //To get the high scores, it fetches from NSUserDefualts. The code for which was scoured here http://www.ios-blog.co.uk/tutorials/objective-c/storing-data-with-nsuserdefaults/
+    
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    [defaults synchronize];
+    
+    NSInteger High1 = [defaults integerForKey:@"HighScore1"];
+    NSInteger High2 = [defaults integerForKey:@"HighScore2"];
+    NSInteger High3 = [defaults integerForKey:@"HighScore3"];
+
+    
+    
     Generator = [World_Generator Inital_Generate_World:World];
     [Generator Initallise_Ocean];
     
@@ -60,12 +73,60 @@ static const __UINT32_TYPE__ BoomCatagory= 0x1 << 4;
     TouchToStart.zPosition=8;
     TouchToStart.text= @"Touch to start";
     TouchToStart.name= @"Touch_To_Start";
+    [World addChild:TouchToStart];
+    
+    bool UpdatePoints = false;
+    
+    if (ThePoints != 0){
+        if (ThePoints >= High1){
+            High3 = High2;
+            High2 = High1;
+            High1 = ThePoints;
+            UpdatePoints = true;
+        } else if (ThePoints >= High2){
+            High3 = High2;
+            High2 = ThePoints;
+            UpdatePoints = true;
+
+        } else if (ThePoints >= High3){
+            High3 = ThePoints;
+            UpdatePoints = true;
+
+        }
+        if (UpdatePoints){
+            [defaults setInteger:High1 forKey:@"HighScore1"];
+            [defaults setInteger:High2 forKey:@"HighScore2"];
+            [defaults setInteger:High3 forKey:@"HighScore3"];
+            [defaults synchronize];
+        }
+    }
+    
+    SKLabelNode *Score1 = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+    Score1.position = CGPointMake(-220, 150);
+    Score1.zPosition=8;
+    Score1.text= [NSString stringWithFormat:@"1st: %li", (long)High1];
+    Score1.name= @"Score1";
+    [World addChild:Score1];
+    
+    SKLabelNode *Score2 = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+    Score2.position = CGPointMake(-220, 100);
+    Score2.zPosition=8;
+    Score2.text= [NSString stringWithFormat:@"2nd: %li", (long)High2];
+    Score2.name= @"Score2";
+    [World addChild:Score2];
+    
+    SKLabelNode *Score3 = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+    Score3.position = CGPointMake(-220, 50);
+    Score3.zPosition=8;
+    Score3.text= [NSString stringWithFormat:@"3rd: %li", (long)High3];
+    Score3.name= @"Score3";
+    [World addChild:Score3];
     
     SKAction *PulseOut = [SKAction scaleBy:1.1 duration:0.7];
     SKAction *PulseIn = [SKAction scaleBy:0.9 duration:0.7];
     SKAction *Pulse = [SKAction sequence:(@[PulseOut,PulseIn])];
     SKAction *PermaPulse= [SKAction repeatActionForever:Pulse];
-    [World addChild:TouchToStart];
+    
     [TouchToStart runAction:PermaPulse];
     
 }
@@ -126,7 +187,7 @@ static const __UINT32_TYPE__ BoomCatagory= 0x1 << 4;
             Boom.position = CGPointMake(Jet.position.x + RandX, Jet.position.y + RandY);
             Boom.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(5, 5)];
             Boom.physicsBody.collisionBitMask = BoomCatagory;
-            [Boom.physicsBody applyImpulse:CGVectorMake(100*RandX, 100*RandY)];
+            [Boom.physicsBody applyImpulse:CGVectorMake(0, 200)];
             Boom.zPosition = 5;
             [World addChild:Boom];
          
@@ -184,7 +245,7 @@ static const __UINT32_TYPE__ BoomCatagory= 0x1 << 4;
     [self Center_Camera:Jet];
     [self Generate];
     Score.position = CGPointMake(Jet.position.x-50, 180);
-    NSString *Temp = [NSString stringWithFormat:@"Score: %i", ThePoints];
+    NSString *Temp = [NSString stringWithFormat:@"Score: %1ld", (long)ThePoints];
     Score.text = Temp;
     
 }

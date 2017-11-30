@@ -37,7 +37,7 @@ static const __UINT32_TYPE__ BoomCatagory= 0x1 << 4;
 -(void)Boost{
     /*SKAction *MoveUp = [SKAction moveByX:0 y:30 duration:0.2];
     [self runAction:MoveUp];*/
-    [self.physicsBody applyImpulse:CGVectorMake(0,100)];
+    [self.physicsBody applyImpulse:CGVectorMake(0,170)];
 }
 
 -(void)Start_The_Move{
