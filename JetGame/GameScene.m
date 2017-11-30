@@ -17,7 +17,7 @@
     SKNode *World;
     SKLabelNode *Score;
     World_Generator *Generator;
-    NSInteger ThePoints;
+    float ThePoints;
 }
 
 
@@ -208,8 +208,8 @@
     [World enumerateChildNodesWithName:@"Ocean" usingBlock:^(SKNode *Node, BOOL *stop){
         if ((Node.position.x + 1000) < Jet.position.x ){
             [Node removeFromParent];
-            ThePoints += 1;
             [Generator Generate_A_Ocean];
+            ThePoints += 1;
         }
     }];
     [World enumerateChildNodesWithName:@"Rock" usingBlock:^(SKNode *Node, BOOL *stop){

@@ -42,10 +42,10 @@ static const __UINT32_TYPE__ BackgroundCatagory= 0x1 << 7;
         [self Generate_A_Rock];
         for (int j = 0; j < 3; j++){
             [self Generate_A_Cloud];
+            [self Generate_A_ParallaxFar];
             for (int k =0; k < 3; k++){
                 [self Generate_A_ParallaxClose];
                 [self Generate_A_ParallaxMid];
-                [self Generate_A_ParallaxFar];
             }
         }
     }
