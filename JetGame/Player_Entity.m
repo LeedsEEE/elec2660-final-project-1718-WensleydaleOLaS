@@ -18,6 +18,7 @@ static const __UINT32_TYPE__ RockCatagory= 0x1 << 1;
 static const __UINT32_TYPE__ CloudCatagory= 0x1 << 2;
 static const __UINT32_TYPE__ OceanCatagory= 0x1 << 3;
 static const __UINT32_TYPE__ BoomCatagory= 0x1 << 4;
+static const __UINT32_TYPE__ BackgroundCatagory= 0x1 << 7;
 
 + (id)player_entity{
     //Player_Entity *player_entity = [Player_Entity spriteNodeWithColor:[UIColor redColor] size:CGSizeMake(50,50)];
@@ -28,8 +29,8 @@ static const __UINT32_TYPE__ BoomCatagory= 0x1 << 4;
     player_entity.name = @"Jet";
     player_entity.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(101,64)];
     player_entity.physicsBody.categoryBitMask = PlayerCatagory;
-    player_entity.physicsBody.contactTestBitMask = RockCatagory | CloudCatagory| ~OceanCatagory | ~BoomCatagory;
-    player_entity.physicsBody.collisionBitMask = OceanCatagory | RockCatagory | ~CloudCatagory | ~BoomCatagory;
+    player_entity.physicsBody.contactTestBitMask = RockCatagory | CloudCatagory| ~OceanCatagory | ~BackgroundCatagory | ~BoomCatagory;
+    player_entity.physicsBody.collisionBitMask = ~OceanCatagory | RockCatagory | ~CloudCatagory | ~BackgroundCatagory | ~BoomCatagory;
     player_entity.physicsBody.dynamic = NO;
     return player_entity;
 }
@@ -49,7 +50,8 @@ static const __UINT32_TYPE__ BoomCatagory= 0x1 << 4;
 
 -(void)Stop_The_Move{
     [self removeActionForKey:@"Mover"];
-    self.physicsBody.dynamic = NO;
+    [self.physicsBody applyImpulse:CGVectorMake(100,0)];
+    // self.physicsBody.dynamic = NO;
 }
 //
 @end

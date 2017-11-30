@@ -12,13 +12,19 @@
 @property double Current_X;
 @property double Current_Rock_X;
 @property double Current_Cloud_X;
+@property double Current_P_X1;
+@property double Current_P_X2;
+@property double Current_P_X3;
 //Removed Properties that are not needed due to how the spirtenodes work
 @property SKNode *World;
 @property NSInteger WetWidth;
 +(id)Inital_Generate_World:(SKNode *)World;
--(void)Continious_Generate;
+//removed Continious Generate as it wasn't needed in the end
 -(void)Initallise_Ocean;
 -(void)Generate_A_Ocean;
+-(void)Generate_A_ParallaxClose;
+-(void)Generate_A_ParallaxMid;
+-(void)Generate_A_ParallaxFar;
 -(void)Generate_A_Rock;
 -(void)Generate_A_Cloud;
 @end

@@ -155,11 +155,16 @@
     [World addChild:GameOver];
     
     SKLabelNode *TouchToResume = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-    TouchToResume.position = CGPointMake(Jet.position.x, 20);;
+    TouchToResume.position = CGPointMake(Jet.position.x, -50);;
     TouchToResume.text = @"Touch to return to menu";
     TouchToResume.zPosition=7;
     TouchToResume.name = @"Game_Over_Label";
     [World addChild:TouchToResume];
+
+    
+    Score.position = CGPointMake(Jet.position.x, 20);
+    
+    [self Center_Camera:GameOver];
 
     
     NSLog(@"Game over man, game over");
@@ -199,25 +204,52 @@
 }
 
 -(void)Generate{
+    if (!self.Game_over){
     [World enumerateChildNodesWithName:@"Ocean" usingBlock:^(SKNode *Node, BOOL *stop){
-        if ((Node.position.x + Generator.WetWidth) < Jet.position.x ){
+        if ((Node.position.x + 1000) < Jet.position.x ){
             [Node removeFromParent];
-            [Generator Generate_A_Ocean];
             ThePoints += 1;
+            [Generator Generate_A_Ocean];
         }
     }];
     [World enumerateChildNodesWithName:@"Rock" usingBlock:^(SKNode *Node, BOOL *stop){
-        if ((Node.position.x + 500) < Jet.position.x ){
+        if ((Node.position.x + 1000) < Jet.position.x ){
             [Node removeFromParent];
             [Generator Generate_A_Rock];
         }
+        
     }];
     [World enumerateChildNodesWithName:@"Cloud" usingBlock:^(SKNode *Node, BOOL *stop){
         if ((Node.position.x + 1000) < Jet.position.x ){
             [Node removeFromParent];
             [Generator Generate_A_Cloud];
         }
+       
+  
     }];
+    [World enumerateChildNodesWithName:@"Close" usingBlock:^(SKNode *Node, BOOL *stop){
+        if ((Node.position.x + 1000) < Jet.position.x ){
+            [Node removeFromParent];
+            [Generator Generate_A_ParallaxClose];
+        }
+ 
+    }];
+    [World enumerateChildNodesWithName:@"Mid" usingBlock:^(SKNode *Node, BOOL *stop){
+        if ((Node.position.x + 1000) < Jet.position.x ){
+            [Node removeFromParent];
+            [Generator Generate_A_ParallaxMid];
+        }
+  
+    }];
+    [World enumerateChildNodesWithName:@"Far" usingBlock:^(SKNode *Node, BOOL *stop){
+        if ((Node.position.x + 1000) < Jet.position.x ){
+            [Node removeFromParent];
+            [Generator Generate_A_ParallaxFar];
+        }
+     
+    }];
+    }
+
 }
 
 
@@ -242,9 +274,11 @@
 }
 
 -(void)didSimulatePhysics{
-    [self Center_Camera:Jet];
+    if (!self.Game_over){
+        [self Center_Camera:Jet];
+        Score.position = CGPointMake(Jet.position.x-50, 180);
+    }
     [self Generate];
-    Score.position = CGPointMake(Jet.position.x-50, 180);
     NSString *Temp = [NSString stringWithFormat:@"Score: %1ld", (long)ThePoints];
     Score.text = Temp;
     

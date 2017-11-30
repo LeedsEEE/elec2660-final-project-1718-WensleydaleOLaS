@@ -15,6 +15,7 @@
 static const __UINT32_TYPE__ RockCatagory= 0x1 << 1;
 static const __UINT32_TYPE__ CloudCatagory= 0x1 << 2;
 static const __UINT32_TYPE__ OceanCatagory= 0x1 << 3;
+static const __UINT32_TYPE__ BackgroundCatagory= 0x1 << 7;
 
 
 +(id)Inital_Generate_World:(SKNode *)World{
@@ -26,18 +27,14 @@ static const __UINT32_TYPE__ OceanCatagory= 0x1 << 3;
     Generator.World= World;
     Generator.WetWidth = 767;
     Generator.Current_Cloud_X = -200;
+    Generator.Current_P_X1 = -500;
+    Generator.Current_P_X2 = -500;
+    Generator.Current_P_X3 = -500;
     
     return Generator;
 }
 
-- (void)Continious_Generate{
-    /*SKSpriteNode *Ocean = [SKSpriteNode spriteNodeWithColor:[UIColor blueColor] size:CGSizeMake(self.frame.size.width, 100)];
-    Ocean.position = CGPointMake(0, -200);
-    Ocean.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.scene.frame.size.width, 100)];
-    Ocean.physicsBody.dynamic = NO;
-    [self.World addChild:Ocean];*/
-
-}
+//removed Continious Generate as it wasn't needed in the end
 
 - (void)Initallise_Ocean{
     for( int i =0; i < 3; i++){
@@ -45,6 +42,11 @@ static const __UINT32_TYPE__ OceanCatagory= 0x1 << 3;
         [self Generate_A_Rock];
         for (int j = 0; j < 3; j++){
             [self Generate_A_Cloud];
+            for (int k =0; k < 3; k++){
+                [self Generate_A_ParallaxClose];
+                [self Generate_A_ParallaxMid];
+                [self Generate_A_ParallaxFar];
+            }
         }
     }
 }
@@ -94,7 +96,64 @@ static const __UINT32_TYPE__ OceanCatagory= 0x1 << 3;
     
     self.Current_Cloud_X += Rand;
 }
-//
+
+-(void)Generate_A_ParallaxClose{
+    int Rand = arc4random() % 30 + 30;
+    SKSpriteNode *Layer1 = [SKSpriteNode spriteNodeWithColor:([UIColor greenColor]) size:CGSizeMake(100, Rand)];
+    Layer1.position = CGPointMake(self.Current_P_X1, -150);
+    Layer1.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(0, 0)];
+    Layer1.physicsBody.dynamic = NO;
+    Layer1.name = @"Close";
+    Layer1.zPosition = -3;
+    Layer1.physicsBody.categoryBitMask = BackgroundCatagory;
+    [self.World addChild:Layer1];
+    
+    //Reused the move the world to reduce the level that the background moves
+    SKAction *Increment = [SKAction moveByX:5 y:0 duration:0.03];
+    SKAction *Move_The_World = [SKAction repeatActionForever:Increment];
+    [Layer1 runAction:Move_The_World withKey:@"Layer1Move"];
+    
+    self.Current_P_X1 += 100;
+}
+-(void)Generate_A_ParallaxMid{
+    int Rand = arc4random() % 30 + 60;
+    SKSpriteNode *Layer2 = [SKSpriteNode spriteNodeWithColor:([UIColor redColor]) size:CGSizeMake(150, Rand)];
+    Layer2.position = CGPointMake(self.Current_P_X2, -150);
+    Layer2.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(0, 0)];
+    Layer2.physicsBody.dynamic = NO;
+    Layer2.name = @"Mid";
+    Layer2.zPosition = -4;
+    Layer2.physicsBody.categoryBitMask = BackgroundCatagory;
+    [self.World addChild:Layer2];
+    
+    //Reused the move the world to reduce the level that the background moves
+    SKAction *Increment = [SKAction moveByX:13 y:0 duration:0.03];
+    SKAction *Move_The_World = [SKAction repeatActionForever:Increment];
+    [Layer2 runAction:Move_The_World withKey:@"Layer2Move"];
+    
+   self.Current_P_X2 += 150;
+}
+-(void)Generate_A_ParallaxFar{
+    int Rand = arc4random() % 70 + 90;
+    SKSpriteNode *Layer3 = [SKSpriteNode spriteNodeWithColor:([UIColor orangeColor]) size:CGSizeMake(200, Rand)];
+    Layer3.position = CGPointMake(self.Current_P_X3, -150);
+    Layer3.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(0, 0)];
+    Layer3.physicsBody.dynamic = NO;
+    Layer3.name = @"Far";
+    Layer3.zPosition = -5;
+    Layer3.physicsBody.categoryBitMask = BackgroundCatagory;
+    [self.World addChild:Layer3];
+    
+    
+    //Reused the move the world to reduce the level that the background moves
+    SKAction *Increment = [SKAction moveByX:19 y:0 duration:0.03];
+    SKAction *Move_The_World = [SKAction repeatActionForever:Increment];
+    [Layer3 runAction:Move_The_World withKey:@"Layer3Move"];
+    
+   self.Current_P_X3 += 200;
+    
+}
+
 
 
 @end
