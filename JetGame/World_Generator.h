@@ -23,9 +23,9 @@
 //removed Continious Generate as it wasn't needed in the end
 -(void)Initallise_Ocean;
 -(void)Generate_A_Ocean;
--(void)Generate_A_ParallaxClose;
--(void)Generate_A_ParallaxMid;
--(void)Generate_A_ParallaxFar;
+-(void)Generate_A_ParallaxClose:(Boolean)Initial_Gen;
+-(void)Generate_A_ParallaxMid:(Boolean)Initial_Gen;
+-(void)Generate_A_ParallaxFar:(Boolean)Initial_Gen;
 -(void)Generate_A_Rock;
 -(void)Generate_A_Cloud;
 @end

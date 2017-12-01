@@ -27,11 +27,10 @@ static const __UINT32_TYPE__ BackgroundCatagory= 0x1 << 7;
     Generator.Current_Rock_X = 100;
     Generator.World= World;
     Generator.WetWidth = 170;
-    Generator.Current_Cloud_X = -200;
-    Generator.Current_P_X1 = -1500;
-    Generator.Current_P_X2 = -1500;
-    Generator.Current_P_X3 = -1500;
-
+    Generator.Current_Cloud_X = -300;
+    Generator.Current_P_X1 = -500;
+    Generator.Current_P_X2 = -500;
+    Generator.Current_P_X3 = -500;
     
     return Generator;
 }
@@ -43,10 +42,10 @@ static const __UINT32_TYPE__ BackgroundCatagory= 0x1 << 7;
         [self Generate_A_Rock];
         for (int j = 0; j < 8; j++){            
             [self Generate_A_Cloud];
-            [self Generate_A_ParallaxFar];
             [self Generate_A_Ocean];
-            [self Generate_A_ParallaxClose];
-            [self Generate_A_ParallaxMid];
+            [self Generate_A_ParallaxFar:true];
+            [self Generate_A_ParallaxMid:true];
+            [self Generate_A_ParallaxClose:true];
         }
     }
 }
@@ -60,10 +59,10 @@ static const __UINT32_TYPE__ BackgroundCatagory= 0x1 << 7;
    // Ocean.yScale = 0.14;
     
     Ocean.position = CGPointMake(self.Current_X, -170);
-    Ocean.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.WetWidth/2, 10)];
+    Ocean.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.WetWidth, 5)];
     Ocean.physicsBody.dynamic = NO;
     Ocean.name = @"Ocean";
-    Ocean.zPosition = -2;
+    Ocean.zPosition = 1;
     Ocean.physicsBody.categoryBitMask = OceanCatagory;
     
     Ocean.xScale = 0.5;
@@ -77,12 +76,18 @@ static const __UINT32_TYPE__ BackgroundCatagory= 0x1 << 7;
 
 - (void)Generate_A_Rock{
     
-    int Rand = (arc4random() % 200 ) + 150;
+    int Rand = (arc4random() % 200 ) + 200;
     int Rand2 = (arc4random() % 200 ) + 400;
-    SKSpriteNode *Rock = [SKSpriteNode spriteNodeWithColor:([UIColor blackColor]) size:CGSizeMake(40, Rand)];
+    
+    int RandImg = (arc4random() % 3 )+ 1;
+    
+    SKSpriteNode *Rock = [SKSpriteNode spriteNodeWithImageNamed:[NSString stringWithFormat:@"Rock%i.png",RandImg]];
+    
     Rock.position = CGPointMake(self.Current_Rock_X + Rand2, -180);
-    Rock.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(40,Rand)];//40, Rand)];
+    Rock.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(180,790)];
     Rock.physicsBody.dynamic = NO;
+    Rock.xScale = 40.0 / 200.0;
+    Rock.yScale = Rand / 800.0;
     Rock.name = @"Rock";
     Rock.zPosition = -1;
     Rock.physicsBody.categoryBitMask = RockCatagory;
@@ -101,7 +106,7 @@ static const __UINT32_TYPE__ BackgroundCatagory= 0x1 << 7;
     SKSpriteNode *Cloud = [SKSpriteNode spriteNodeWithImageNamed:[NSString stringWithFormat:@"Cloud%i.png",RandImg]];
     
     Cloud.position = CGPointMake(self.Current_Cloud_X, 200);
-    Cloud.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(Rand, Rand2)];
+    Cloud.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(800, 400)];
     Cloud.xScale = Rand / 800.0; //scales the image to the randomly generated cloud size
     //NSLog(@"Poop!$!$: %i",Rand);    For checking the maths was correct, just needed a .0 at the end to stop it counting the 800 as an int and as a float instead
     // float temp = Rand / 800.0;
@@ -116,9 +121,21 @@ static const __UINT32_TYPE__ BackgroundCatagory= 0x1 << 7;
     self.Current_Cloud_X += 100;
 }
 
--(void)Generate_A_ParallaxClose{
+-(void)Generate_A_ParallaxClose:(Boolean)Initial_Gen{
+    
+    if (!Initial_Gen){
+        __block CGFloat Max_X;
+        [self.World enumerateChildNodesWithName:@"Close" usingBlock:^(SKNode *Node, BOOL *stop){
+            if (Node.position.x > Max_X){
+                Max_X = Node.position.x;
+            }
+        }];
+        self.Current_P_X1 = Max_X + 85;
+    }else{
+        self.Current_P_X1 += 85;
+    }
 
-    int Rand = arc4random() % 30 + 10;
+    int Rand = arc4random() % 20 + 10;
     int RandImg = (arc4random() % 3 )+ 1;
     
     SKSpriteNode *Layer1 = [SKSpriteNode spriteNodeWithImageNamed:[NSString stringWithFormat:@"Ocean%i.png",RandImg]];
@@ -137,17 +154,29 @@ static const __UINT32_TYPE__ BackgroundCatagory= 0x1 << 7;
     [self.World addChild:Layer1];
     
     if (self.Need_Parallax){ //Checks if the generated terrain needs a parallax effect
-    //Reused the move the world to reduce the level that the background moves
-    SKAction *Increment = [SKAction moveByX:5 y:0 duration:0.03];
-    SKAction *Move_The_World = [SKAction repeatActionForever:Increment];
-    [Layer1 runAction:Move_The_World withKey:@"Layer1Move"];
+        //Reused the move the world to reduce the level that the background moves
+        SKAction *Increment = [SKAction moveByX:5 y:0 duration:0.03];
+        SKAction *Move_The_World = [SKAction repeatActionForever:Increment];
+        [Layer1 runAction:Move_The_World withKey:@"Layer1Move"];
     }
-    
-    self.Current_P_X1 += 85;
+
 }
--(void)Generate_A_ParallaxMid{
+-(void)Generate_A_ParallaxMid:(Boolean)Initial_Gen{
     int Rand = arc4random() % 20 + 40;
     int RandImg = (arc4random() % 3 )+ 1;
+    
+    if (!Initial_Gen){
+        __block CGFloat Max_X;
+        [self.World enumerateChildNodesWithName:@"Close" usingBlock:^(SKNode *Node, BOOL *stop){
+            if (Node.position.x > Max_X){
+                Max_X = Node.position.x;
+            }
+        }];
+        self.Current_P_X2 = Max_X + 85;
+    }else{
+        self.Current_P_X2 += 85;
+    }
+
     
     
     SKSpriteNode *Layer2 = [SKSpriteNode spriteNodeWithImageNamed:[NSString stringWithFormat:@"Ocean%i.png",RandImg]];
@@ -166,21 +195,31 @@ static const __UINT32_TYPE__ BackgroundCatagory= 0x1 << 7;
     [self.World addChild:Layer2];
     
     
-    
-    
     if (self.Need_Parallax){ //Checks if the generated terrain needs a parallax effect
     //Reused the move the world to reduce the level that the background moves
     SKAction *Increment = [SKAction moveByX:13 y:0 duration:0.03];
     SKAction *Move_The_World = [SKAction repeatActionForever:Increment];
     [Layer2 runAction:Move_The_World withKey:@"Layer2Move"];
+        
+    }
+
+}
+-(void)Generate_A_ParallaxFar:(Boolean)Initial_Gen{
+    int Rand = arc4random() % 20 + 70;
+    int RandImg = (arc4random() % 3 )+ 1;
+    
+    if (!Initial_Gen){
+        __block CGFloat Max_X;
+        [self.World enumerateChildNodesWithName:@"Far" usingBlock:^(SKNode *Node, BOOL *stop){
+            if (Node.position.x > Max_X){
+                Max_X = Node.position.x;
+            }
+        }];
+        self.Current_P_X3 = Max_X + 110;
+    }else{
+        self.Current_P_X3 += 110;
     }
     
-   self.Current_P_X2 += 85;
-}
--(void)Generate_A_ParallaxFar{
-    int Rand = arc4random() % 30 + 60;
-    
-    int RandImg = (arc4random() % 3 )+ 1;
     
     SKSpriteNode *Layer3 = [SKSpriteNode spriteNodeWithImageNamed:[NSString stringWithFormat:@"Mountian%i.png",RandImg]];
     
@@ -201,8 +240,7 @@ static const __UINT32_TYPE__ BackgroundCatagory= 0x1 << 7;
     SKAction *Move_The_World = [SKAction repeatActionForever:Increment];
     [Layer3 runAction:Move_The_World withKey:@"Layer3Move"];
     }
-    
-   self.Current_P_X3 += 110;
+
     
 }
 

@@ -24,21 +24,51 @@ static const __UINT32_TYPE__ BackgroundCatagory= 0x1 << 7;
     //Player_Entity *player_entity = [Player_Entity spriteNodeWithColor:[UIColor redColor] size:CGSizeMake(50,50)];
     
     Player_Entity *player_entity = [Player_Entity spriteNodeWithImageNamed:@"Jet.png"];
+    player_entity.name = @"Jet";
+    //player_entity.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(92,24)];
+    
+    //The following code for the hitbox of the spirte was gained from this website http://insyncapp.net/SKPhysicsBodyPathGenerator.html and adpated to fit the current varible names
+    CGFloat offsetX = 0; //player_entity.frame.size.width * player_entity.anchorPoint.x;
+    CGFloat offsetY = 0; //player_entity.frame.size.height * player_entity.anchorPoint.y;
+    
+    CGMutablePathRef path = CGPathCreateMutable();
+    
+    CGPathMoveToPoint(path, NULL, 52 - offsetX, 81 - offsetY);
+    CGPathAddLineToPoint(path, NULL, 92 - offsetX, 42 - offsetY);
+    CGPathAddLineToPoint(path, NULL, 164 - offsetX, 47 - offsetY);
+    CGPathAddLineToPoint(path, NULL, 218 - offsetX, 60 - offsetY);
+    CGPathAddLineToPoint(path, NULL, 251 - offsetX, 53 - offsetY);
+    CGPathAddLineToPoint(path, NULL, 283 - offsetX, 42 - offsetY);
+    CGPathAddLineToPoint(path, NULL, 314 - offsetX, 28 - offsetY);
+    CGPathAddLineToPoint(path, NULL, 275 - offsetX, 24 - offsetY);
+    CGPathAddLineToPoint(path, NULL, 231 - offsetX, 21 - offsetY);
+    CGPathAddLineToPoint(path, NULL, 191 - offsetX, 16 - offsetY);
+    CGPathAddLineToPoint(path, NULL, 152 - offsetX, 12 - offsetY);
+    CGPathAddLineToPoint(path, NULL, 111 - offsetX, 16 - offsetY);
+    CGPathAddLineToPoint(path, NULL, 75 - offsetX, 21 - offsetY);
+    CGPathAddLineToPoint(path, NULL, 45 - offsetX, 25 - offsetY);
+    CGPathAddLineToPoint(path, NULL, 31 - offsetX, 67 - offsetY);
+    CGPathAddLineToPoint(path, NULL, 34 - offsetX, 78 - offsetY);
+    
+    CGPathCloseSubpath(path);
+    
+    player_entity.physicsBody = [SKPhysicsBody bodyWithPolygonFromPath:path];
+    
     player_entity.xScale = 0.14;
     player_entity.yScale = 0.14;
-    player_entity.name = @"Jet";
-    player_entity.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(92,24)];
+    
     player_entity.physicsBody.categoryBitMask = PlayerCatagory;
     player_entity.physicsBody.contactTestBitMask = RockCatagory | CloudCatagory| ~OceanCatagory | ~BackgroundCatagory | ~BoomCatagory;
     player_entity.physicsBody.collisionBitMask = ~OceanCatagory | RockCatagory | ~CloudCatagory | ~BackgroundCatagory | ~BoomCatagory;
     player_entity.physicsBody.dynamic = NO;
+    player_entity.zPosition = -1;
     return player_entity;
 }
 
 -(void)Boost{
     /*SKAction *MoveUp = [SKAction moveByX:0 y:30 duration:0.2];
     [self runAction:MoveUp];*/
-    [self.physicsBody applyImpulse:CGVectorMake(0,70)];
+    [self.physicsBody applyImpulse:CGVectorMake(0,10)];
 }
 
 -(void)Start_The_Move{
@@ -50,8 +80,14 @@ static const __UINT32_TYPE__ BackgroundCatagory= 0x1 << 7;
 
 -(void)Stop_The_Move{
     [self removeActionForKey:@"Mover"];
-    [self.physicsBody applyImpulse:CGVectorMake(100,0)];
+    [self.physicsBody applyImpulse:CGVectorMake(10,0)];
+    [self setTexture:[SKTexture textureWithImageNamed:@"Jet.png"]];
     // self.physicsBody.dynamic = NO;
 }
-//
+
+
+-(void)Animate:(NSInteger)Frame{
+    [self setTexture:[SKTexture textureWithImageNamed:[NSString stringWithFormat:@"Jet%i.png",Frame]]];
+}
+
 @end

@@ -9,7 +9,7 @@
 #import "GameScene.h"
 
 //The overall structure, basic functions and game logic of the program are based on Micheal Leech's how to make a 2d game series on Youtube **linked here**
-//static const __UINT32_TYPE__ BoomCatagory= 0x1 << 4;
+static const __UINT32_TYPE__ BoomCatagory= 0x1 << 4;
 
 @implementation GameScene
 {
@@ -63,8 +63,9 @@
     
     
     Generator = [World_Generator Inital_Generate_World:World];
-    [Generator Initallise_Ocean];
     Generator.Need_Parallax = false;
+    [Generator Initallise_Ocean];
+
     
     Jet = [Player_Entity player_entity];
     [World addChild:Jet];
@@ -223,7 +224,7 @@
         //}
     }];
     if (!self.Game_over){
-        /*for (int i = 0; i < 50; i++){
+        for (int i = 0; i < 50; i++){
             int RandX = (arc4random() % 1) * (5 * (i -0.5));
             int RandY = (arc4random() % 1) * (5 * (i -0.5));
             SKSpriteNode *Boom = [SKSpriteNode spriteNodeWithColor:[UIColor redColor] size:CGSizeMake(5, 5)];
@@ -234,7 +235,7 @@
             Boom.zPosition = 5;
             [World addChild:Boom];
          
-        }*/
+        }
         [Jet Stop_The_Move];
         [self Game_Over];
     }
@@ -269,21 +270,21 @@
     [World enumerateChildNodesWithName:@"Close" usingBlock:^(SKNode *Node, BOOL *stop){
         if ((Node.position.x + 500) < Jet.position.x ){
             [Node removeFromParent];
-            [Generator Generate_A_ParallaxClose];
+            [Generator Generate_A_ParallaxClose:false];
         }
  
     }];
     [World enumerateChildNodesWithName:@"Mid" usingBlock:^(SKNode *Node, BOOL *stop){
         if ((Node.position.x + 500) < Jet.position.x ){
             [Node removeFromParent];
-            [Generator Generate_A_ParallaxMid];
+            [Generator Generate_A_ParallaxMid:false];
         }
   
     }];
     [World enumerateChildNodesWithName:@"Far" usingBlock:^(SKNode *Node, BOOL *stop){
         if ((Node.position.x + 500) < Jet.position.x ){
             [Node removeFromParent];
-            [Generator Generate_A_ParallaxFar];
+            [Generator Generate_A_ParallaxFar:false];
         }
      
     }];
@@ -317,6 +318,8 @@
         [self Center_Camera:Jet];
         Score.position = CGPointMake(Jet.position.x-50, 180);
         [self Generate];
+         NSInteger RandImg = (arc4random() % 3 )+ 1;
+        [Jet Animate: RandImg];
     }
     NSString *Temp = [NSString stringWithFormat:@"Score: %1ld", (long)ThePoints];
     Score.text = Temp;

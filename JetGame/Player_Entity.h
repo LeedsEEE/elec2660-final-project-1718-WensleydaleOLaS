@@ -10,9 +10,12 @@
 
 @interface Player_Entity : SKSpriteNode
 
+
 +(id)player_entity;
 -(void)Boost;
 -(void)Start_The_Move;
 -(void)Stop_The_Move;
+-(void)Animate:(NSInteger)Frame;
+
 
 @end
