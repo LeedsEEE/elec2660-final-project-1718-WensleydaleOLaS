@@ -64,6 +64,7 @@
     
     Generator = [World_Generator Inital_Generate_World:World];
     [Generator Initallise_Ocean];
+    Generator.Need_Parallax = false;
     
     Jet = [Player_Entity player_entity];
     [World addChild:Jet];
@@ -140,12 +141,18 @@
     [World addChild:Score];
     
     self.Started = YES;
+    
     [Jet Start_The_Move];
+    
     ThePoints = 0;
+    
+    [self Start_The_Parallax];
 }
 
 -(void)Game_Over{
     self.Game_over = true;
+    
+    [self Stop_The_Parallax];
     
     SKLabelNode *GameOver = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
     GameOver.position = CGPointMake(Jet.position.x, 100);;
@@ -169,6 +176,37 @@
     
     NSLog(@"Game over man, game over");
 }
+
+-(void)Stop_The_Parallax{
+    [World enumerateChildNodesWithName:@"Close" usingBlock:^(SKNode *Node, BOOL *stop){
+          [Node removeActionForKey:@"Layer1Move"];
+    }];
+    [World enumerateChildNodesWithName:@"Mid" usingBlock:^(SKNode *Node, BOOL *stop){
+        [Node removeActionForKey:@"Layer2Move"];
+    }];
+    [World enumerateChildNodesWithName:@"Far" usingBlock:^(SKNode *Node, BOOL *stop){
+        [Node removeActionForKey:@"Layer3Move"];
+    }];
+}
+-(void)Start_The_Parallax{
+    [World enumerateChildNodesWithName:@"Close" usingBlock:^(SKNode *Node, BOOL *stop){
+        SKAction *Increment = [SKAction moveByX:5 y:0 duration:0.03];
+        SKAction *Move_The_World = [SKAction repeatActionForever:Increment];
+        [Node runAction:Move_The_World withKey:@"Layer1Move"];
+
+    }];
+    [World enumerateChildNodesWithName:@"Mid" usingBlock:^(SKNode *Node, BOOL *stop){
+        SKAction *Increment = [SKAction moveByX:13 y:0 duration:0.03];
+        SKAction *Move_The_World = [SKAction repeatActionForever:Increment];
+        [Node runAction:Move_The_World withKey:@"Layer2Move"];
+    }];
+    [World enumerateChildNodesWithName:@"Far" usingBlock:^(SKNode *Node, BOOL *stop){
+        SKAction *Increment = [SKAction moveByX:19 y:0 duration:0.03];
+        SKAction *Move_The_World = [SKAction repeatActionForever:Increment];
+        [Node runAction:Move_The_World withKey:@"Layer3Move"];
+    }];
+}
+
 
 -(void)Clear_Screen{
     [World removeAllChildren]; //Clears all entities
@@ -205,22 +243,23 @@
 
 -(void)Generate{
     if (!self.Game_over){
+        Generator.Need_Parallax = true;
     [World enumerateChildNodesWithName:@"Ocean" usingBlock:^(SKNode *Node, BOOL *stop){
-        if ((Node.position.x + 1000) < Jet.position.x ){
+        if ((Node.position.x + 500) < Jet.position.x ){
             [Node removeFromParent];
             [Generator Generate_A_Ocean];
             ThePoints += 1;
         }
     }];
     [World enumerateChildNodesWithName:@"Rock" usingBlock:^(SKNode *Node, BOOL *stop){
-        if ((Node.position.x + 1000) < Jet.position.x ){
+        if ((Node.position.x + 500) < Jet.position.x ){
             [Node removeFromParent];
             [Generator Generate_A_Rock];
         }
         
     }];
     [World enumerateChildNodesWithName:@"Cloud" usingBlock:^(SKNode *Node, BOOL *stop){
-        if ((Node.position.x + 1000) < Jet.position.x ){
+        if ((Node.position.x + 500) < Jet.position.x ){
             [Node removeFromParent];
             [Generator Generate_A_Cloud];
         }
@@ -228,21 +267,21 @@
   
     }];
     [World enumerateChildNodesWithName:@"Close" usingBlock:^(SKNode *Node, BOOL *stop){
-        if ((Node.position.x + 1000) < Jet.position.x ){
+        if ((Node.position.x + 500) < Jet.position.x ){
             [Node removeFromParent];
             [Generator Generate_A_ParallaxClose];
         }
  
     }];
     [World enumerateChildNodesWithName:@"Mid" usingBlock:^(SKNode *Node, BOOL *stop){
-        if ((Node.position.x + 1000) < Jet.position.x ){
+        if ((Node.position.x + 500) < Jet.position.x ){
             [Node removeFromParent];
             [Generator Generate_A_ParallaxMid];
         }
   
     }];
     [World enumerateChildNodesWithName:@"Far" usingBlock:^(SKNode *Node, BOOL *stop){
-        if ((Node.position.x + 1000) < Jet.position.x ){
+        if ((Node.position.x + 500) < Jet.position.x ){
             [Node removeFromParent];
             [Generator Generate_A_ParallaxFar];
         }
@@ -277,8 +316,8 @@
     if (!self.Game_over){
         [self Center_Camera:Jet];
         Score.position = CGPointMake(Jet.position.x-50, 180);
+        [self Generate];
     }
-    [self Generate];
     NSString *Temp = [NSString stringWithFormat:@"Score: %1ld", (long)ThePoints];
     Score.text = Temp;
     

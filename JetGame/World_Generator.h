@@ -9,6 +9,7 @@
 #import <SpriteKit/SpriteKit.h>
 
 @interface World_Generator : SKSpriteNode
+@property Boolean Need_Parallax;
 @property double Current_X;
 @property double Current_Rock_X;
 @property double Current_Cloud_X;
