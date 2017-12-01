@@ -162,12 +162,10 @@ static const __UINT32_TYPE__ BackgroundCatagory= 0x1 << 7;
 
 }
 -(void)Generate_A_ParallaxMid:(Boolean)Initial_Gen{
-    int Rand = arc4random() % 20 + 40;
-    int RandImg = (arc4random() % 3 )+ 1;
     
     if (!Initial_Gen){
         __block CGFloat Max_X;
-        [self.World enumerateChildNodesWithName:@"Close" usingBlock:^(SKNode *Node, BOOL *stop){
+        [self.World enumerateChildNodesWithName:@"Mid" usingBlock:^(SKNode *Node, BOOL *stop){
             if (Node.position.x > Max_X){
                 Max_X = Node.position.x;
             }
@@ -178,6 +176,8 @@ static const __UINT32_TYPE__ BackgroundCatagory= 0x1 << 7;
     }
 
     
+    int Rand = arc4random() % 20 + 35;
+    int RandImg = (arc4random() % 3 )+ 1;
     
     SKSpriteNode *Layer2 = [SKSpriteNode spriteNodeWithImageNamed:[NSString stringWithFormat:@"Ocean%i.png",RandImg]];
     Layer2.position = CGPointMake(self.Current_P_X2, -170 +Rand);
@@ -205,8 +205,6 @@ static const __UINT32_TYPE__ BackgroundCatagory= 0x1 << 7;
 
 }
 -(void)Generate_A_ParallaxFar:(Boolean)Initial_Gen{
-    int Rand = arc4random() % 20 + 70;
-    int RandImg = (arc4random() % 3 )+ 1;
     
     if (!Initial_Gen){
         __block CGFloat Max_X;
@@ -220,6 +218,9 @@ static const __UINT32_TYPE__ BackgroundCatagory= 0x1 << 7;
         self.Current_P_X3 += 110;
     }
     
+    int Rand = arc4random() % 20 + 70;
+    int RandImg = (arc4random() % 3 )+ 1;
+
     
     SKSpriteNode *Layer3 = [SKSpriteNode spriteNodeWithImageNamed:[NSString stringWithFormat:@"Mountian%i.png",RandImg]];
     

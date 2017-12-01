@@ -26,24 +26,12 @@ static const __UINT32_TYPE__ BoomCatagory= 0x1 << 4;
     
     self.physicsWorld.contactDelegate = self;
     
-    
-
-    
-    
     World = [SKNode node];
+    
     [self addChild:World];
-    
-    
-    /* Removed as no longer needed, world generator has taken over rendering the ocean
-     SKSpriteNode *Ocean = [SKSpriteNode spriteNodeWithColor:[UIColor blueColor] size:CGSizeMake(self.frame.size.width, 100)];
-    Ocean.position = CGPointMake(0, -200);
-    Ocean.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.frame.size.width, 100)];
-    Ocean.physicsBody.dynamic = NO;
-    [World addChild:Ocean];*/
     
     [self Start_Screen];
 
-    
 }
 
 -(void)Start_Screen{
@@ -104,21 +92,21 @@ static const __UINT32_TYPE__ BoomCatagory= 0x1 << 4;
     }
     
     SKLabelNode *Score1 = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-    Score1.position = CGPointMake(-220, 150);
+    Score1.position = CGPointMake(220, 130);
     Score1.zPosition=8;
     Score1.text= [NSString stringWithFormat:@"1st: %li", (long)High1];
     Score1.name= @"Score1";
     [World addChild:Score1];
     
     SKLabelNode *Score2 = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-    Score2.position = CGPointMake(-220, 100);
+    Score2.position = CGPointMake(220, 100);
     Score2.zPosition=8;
     Score2.text= [NSString stringWithFormat:@"2nd: %li", (long)High2];
     Score2.name= @"Score2";
     [World addChild:Score2];
     
     SKLabelNode *Score3 = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-    Score3.position = CGPointMake(-220, 50);
+    Score3.position = CGPointMake(220, 70);
     Score3.zPosition=8;
     Score3.text= [NSString stringWithFormat:@"3rd: %li", (long)High3];
     Score3.name= @"Score3";
@@ -224,17 +212,80 @@ static const __UINT32_TYPE__ BoomCatagory= 0x1 << 4;
         //}
     }];
     if (!self.Game_over){
-        for (int i = 0; i < 50; i++){
-            int RandX = (arc4random() % 1) * (5 * (i -0.5));
-            int RandY = (arc4random() % 1) * (5 * (i -0.5));
+        float X;
+        float Y;
+        float VX;
+        float VY;
+        float Rads;
+
+        for (float i = 0.0; i < 10; i++){
+            //Added trig functions to make the explosion move away from the jet's position
+            float Rand = arc4random() % 5;
+            
             SKSpriteNode *Boom = [SKSpriteNode spriteNodeWithColor:[UIColor redColor] size:CGSizeMake(5, 5)];
-            Boom.position = CGPointMake(Jet.position.x + RandX, Jet.position.y + RandY);
-            Boom.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(5, 5)];
-            Boom.physicsBody.collisionBitMask = BoomCatagory;
-            [Boom.physicsBody applyImpulse:CGVectorMake(0, 200)];
-            Boom.zPosition = 5;
+            
             [World addChild:Boom];
-         
+            
+            Rads = M_PI * 2 * (i/9); // I vary the division of i to give the explosion effect some variety
+            
+            X = cos(Rads) * 2 + Rand;
+            Y = sin(Rads) * 2 + Rand;
+            
+            Boom.position = CGPointMake(Jet.position.x + X, Jet.position.y + Y);
+            Boom.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(1,1)];
+            Boom.physicsBody.collisionBitMask = BoomCatagory;
+
+            VX = X * 0.001;
+            VY = Y * 0.001;
+            
+            [Boom.physicsBody applyImpulse:CGVectorMake(VX, VY)];
+            Boom.zPosition = 5;
+        }
+        for (float i = 0.0; i < 10; i++){
+            //Added trig functions to make the explosion move away from the jet's position
+            float Rand = arc4random() % 5;
+            
+            SKSpriteNode *Boom = [SKSpriteNode spriteNodeWithColor:[UIColor grayColor] size:CGSizeMake(5, 5)];
+            
+            [World addChild:Boom];
+            
+            Rads = M_PI * 2 * (i/11);
+            
+            X = cos(Rads) * 2 + Rand;
+            Y = sin(Rads) * 2 + Rand;
+            
+            Boom.position = CGPointMake(Jet.position.x + X, Jet.position.y + Y);
+            Boom.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(1,1)];
+            Boom.physicsBody.collisionBitMask = BoomCatagory;
+            
+            VX = X * 0.001;
+            VY = Y * 0.001;
+            
+            [Boom.physicsBody applyImpulse:CGVectorMake(VX, VY)];
+            Boom.zPosition = 5;
+        }
+        for (float i = 0.0; i < 10; i++){
+            //Added trig functions to make the explosion move away from the jet's position
+            float Rand = arc4random() % 5;
+            
+            SKSpriteNode *Boom = [SKSpriteNode spriteNodeWithColor:[UIColor blackColor] size:CGSizeMake(5, 5)];
+            
+            [World addChild:Boom];
+            
+            Rads = M_PI * 2 * (i/10);
+            
+            X = cos(Rads) * 2 + Rand;
+            Y = sin(Rads) * 2 + Rand;
+            
+            Boom.position = CGPointMake(Jet.position.x + X, Jet.position.y + Y);
+            Boom.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(1,1)];
+            Boom.physicsBody.collisionBitMask = BoomCatagory;
+            
+            VX = X * 0.001;
+            VY = Y * 0.001;
+            
+            [Boom.physicsBody applyImpulse:CGVectorMake(VX, VY)];
+            Boom.zPosition = 5;
         }
         [Jet Stop_The_Move];
         [self Game_Over];
