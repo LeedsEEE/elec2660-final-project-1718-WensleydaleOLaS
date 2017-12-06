@@ -3,6 +3,8 @@
     THIS IS RELATED TO LAG AND SHOULD NOT BE A PROBLEM ON AN ACTUAL IPHONE
 --IMPORTANT--
 
+The overall structure, basic functions and game logic of the program are based on Micheal Leech's how to make a 2d game series on Youtube, https://youtu.be/CWZgt8a7a-k, then adapted and manipluated to suit my needs as I have not worked with sprite kit before
+
 App is only designed for iPhones, an iPad's aspect ratio does not work 
 
 I decided to add a parallax effect to the terrian as it enhances the users feeling of speed

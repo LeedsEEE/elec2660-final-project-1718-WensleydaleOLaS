@@ -8,7 +8,6 @@
 
 #import "GameScene.h"
 
-//The overall structure, basic functions and game logic of the program are based on Micheal Leech's how to make a 2d game series on Youtube https://youtu.be/CWZgt8a7a-k then adapted and manipluated to suit my needs
 static const __UINT32_TYPE__ BoomCatagory= 0x1 << 4;
 
 @implementation GameScene
