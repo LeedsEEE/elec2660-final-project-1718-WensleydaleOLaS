@@ -64,7 +64,7 @@ static const __UINT32_TYPE__ BackgroundCatagory= 0x1 << 7;
     player_entity.physicsBody.contactTestBitMask = RockCatagory | ~CloudCatagory| ~OceanCatagory | ~BackgroundCatagory | ~BoomCatagory; //Tells the player what it can detect a collision with (~ = not)
     player_entity.physicsBody.collisionBitMask = ~OceanCatagory | RockCatagory | ~CloudCatagory | ~BackgroundCatagory | ~BoomCatagory; //Tells the player what it can actually collide with, not just detect a collision, same rules for 'not' as previous
     player_entity.physicsBody.dynamic = NO;//Locks the player in posistion until it is ready to move
-    player_entity.zPosition = -1;//Sets it behind some of the terrian
+    player_entity.zPosition = -1;//Sets it behind the terrian
     return player_entity;
 }
 

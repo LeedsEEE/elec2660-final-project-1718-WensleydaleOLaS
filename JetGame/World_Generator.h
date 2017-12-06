@@ -9,7 +9,7 @@
 #import <SpriteKit/SpriteKit.h>
 
 @interface World_Generator : SKSpriteNode
-@property double Current_X;
+@property double Current_X; //The 'Current_..." Varibles store the max value of the type terrian being generated with Current_X being the ocean and the others being named depending on their purpose
 @property double Current_Rock_X;
 @property double Current_Cloud_X;
 @property double Current_P_X1;
@@ -17,10 +17,8 @@
 @property double Current_P_X3;
 //Removed Properties that are not needed due to how the spirtenodes work
 //Removed a boolean property as it was no longer required due to reworking of methods
-@property SKNode *World;
-@property NSInteger WetWidth;
+@property SKNode *World; //Used to access the world in the main GameScene
 +(id)Inital_Generate_World:(SKNode *)World;
-//removed Continious Generate as it wasn't needed in the end
 -(void)Initallise_Ocean;
 -(void)Generate_A_Ocean;
 -(void)Generate_A_ParallaxClose:(Boolean)Initial_Gen;

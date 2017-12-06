@@ -1,8 +1,12 @@
 --IMPORTANT--
-**SOME EMULATORS DON'T LIKE MANY NODES ON SCREEN AT A TIME (eg iPhone 7 plus) SO THERE ARE POPPING ISSUES, THIS WOULD NOT BE A PROBLEM ON AN ACTUAL PHONE**
+    SOME EMULATORS DON'T LIKE MANY NODES ON SCREEN AT A TIME (eg iPhone 7 plus) SO THERE ARE POPPING ISSUES WITH MAINLY OCEAN GENERATION
+    THIS IS RELATED TO LAG AND SHOULD NOT BE A PROBLEM ON AN ACTUAL IPHONE
 --IMPORTANT--
 
-App is only designed for iPhones, iPads aspect ratio does not work
+App is only designed for iPhones, an iPad's aspect ratio does not work 
+
+I decided to add a parallax effect to the terrian as it enhances the users feeling of speed
+I also decided to add an extra screen to make it clear to the user that they had lost before they returned to the main menu
 
 Layers:
 -5 | ParralaxFar
@@ -19,6 +23,7 @@ Layers:
 BitMasks:
 RockCatagory        |   1
 CloudCatagory       |   2
+OceanCatagory       |   3
 BoomCatagory        |   4
 BackgroundCatagory  |   7
 PlayerCatagory      |   10

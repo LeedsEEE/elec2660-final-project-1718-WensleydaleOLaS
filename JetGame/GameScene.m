@@ -26,8 +26,8 @@ static const __UINT32_TYPE__ BoomCatagory= 0x1 << 4;
     
     self.physicsWorld.contactDelegate = self;
     
-    World = [SKNode node];
-    
+    World = [SKNode node];    
+
     [self addChild:World];
     
     [self Start_Screen];

@@ -26,7 +26,6 @@ static const __UINT32_TYPE__ BackgroundCatagory= 0x1 << 7;
     Generator.Current_X = -1000;
     Generator.Current_Rock_X = 100;
     Generator.World= World;
-    Generator.WetWidth = 170;
     Generator.Current_Cloud_X = -300;
     Generator.Current_P_X1 = -500;
     Generator.Current_P_X2 = -500;
@@ -38,10 +37,10 @@ static const __UINT32_TYPE__ BackgroundCatagory= 0x1 << 7;
 //removed Continious Generate as it wasn't needed in the end
 
 - (void)Initallise_Ocean{//The inital generation of the terrian
-    for( int i =0; i < 2; i++){
+    for( int i =0; i < 3; i++){
         [self Generate_A_Rock];//Less generations of rocks are needed as they are not on screen very often
     }
-    for (int j = 0; j < 13; j++){//13 generations guarantees the screen is filled by the terrian
+    for (int j = 0; j < 18; j++){//This many generations guarantees the screen is filled by the terrian
         [self Generate_A_Cloud];
         [self Generate_A_Ocean];
         [self Generate_A_ParallaxFar:true];//The 'true' value being passed tells the function that this is an intial generation of terrian so no parallax is required
@@ -52,30 +51,30 @@ static const __UINT32_TYPE__ BackgroundCatagory= 0x1 << 7;
 
 - (void)Generate_A_Ocean{//Generates one ocean node, all terrian nodes follow the same basic generation with minor differenences
     
-    int RandImg = (arc4random() % 3 )+ 1; // Used to select a random image from the selection to give variety to the background
+    int RandImg = (arc4random() % 3 )+ 1; // Used to select a random image from the selection to give variety to the background...
     
-    SKSpriteNode *Ocean = [SKSpriteNode spriteNodeWithImageNamed:[NSString stringWithFormat:@"Ocean%i.png",RandImg]];//Sets up the node with the selected image
+    SKSpriteNode *Ocean = [SKSpriteNode spriteNodeWithImageNamed:[NSString stringWithFormat:@"Ocean%i.png",RandImg]];//Sets up the node with the selected image...
     
-    Ocean.position = CGPointMake(self.Current_X, -170); //Sets up the node on the
-    Ocean.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.WetWidth, 5)];
-    Ocean.physicsBody.dynamic = NO;
-    Ocean.name = @"Ocean";
-    Ocean.zPosition = 1;
-    Ocean.physicsBody.categoryBitMask = OceanCatagory;
+    Ocean.position = CGPointMake(self.Current_X, -170); //Sets up the node, basing it's location on the max X cor of it's node type...
+    Ocean.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(170, 5)];//Sets the hit box of the node...
+    Ocean.physicsBody.dynamic = NO;//Set's if the node changes it's position/movement depending on collisons with other nodes (no in this case)...
+    Ocean.name = @"Ocean";//Gives the node a name...
+    Ocean.zPosition = 1; //Sets the Z posistion of the node, this one will be infront of the majority of the terrain...
+    Ocean.physicsBody.categoryBitMask = OceanCatagory;//Sets the collision bit mask
     
-    Ocean.xScale = 0.5;
-    Ocean.yScale = 0.5;
+    Ocean.xScale = 0.5; //Scales the node (image, hit box and all) to suit the resolutoin better...
+    Ocean.yScale = 0.5; //Same but for y axis...
 
     
-    [self.World addChild:Ocean];
+    [self.World addChild:Ocean];//Adds the node to the world...
     
-    self.Current_X += self.WetWidth/2;
+    self.Current_X += 85; //Increments the current X parallaxed nodes do this in another location. See parallax close for details
 }
 
-- (void)Generate_A_Rock{
+- (void)Generate_A_Rock{//Generates one rock node
     
-    int Rand = (arc4random() % 200 ) + 200;
-    int Rand2 = (arc4random() % 200 ) + 400;
+    int Rand = (arc4random() % 200 ) + 200;//Random number used for the spacing between rocks
+    int Rand2 = (arc4random() % 200 ) + 500;//Random number used for the height of the rocks
     
     int RandImg = (arc4random() % 3 )+ 1;
     
@@ -94,10 +93,10 @@ static const __UINT32_TYPE__ BackgroundCatagory= 0x1 << 7;
     self.Current_Rock_X += Rand2;
 }
 
-- (void)Generate_A_Cloud{
+- (void)Generate_A_Cloud{//Generates one cloud node
     
-    int Rand = arc4random() % 200 + 100;
-    int Rand2 = arc4random() % 50 + 25;
+    int Rand = arc4random() % 200 + 100;//Randomly generates the x size of the cloud
+    int Rand2 = arc4random() % 50 + 25; //Randomly generates the y size of the cloud
     
     int RandImg = (arc4random() % 3 )+ 1;
     
@@ -116,18 +115,18 @@ static const __UINT32_TYPE__ BackgroundCatagory= 0x1 << 7;
     self.Current_Cloud_X += 100;
 }
 
--(void)Generate_A_ParallaxClose:(Boolean)Initial_Gen{
+-(void)Generate_A_ParallaxClose:(Boolean)Initial_Gen{//Generates one close parallax node
     
-    if (!Initial_Gen){
+    if (!Initial_Gen){//Checks if it's an inital world generation, if it's not...
         __block CGFloat Max_X;
-        [self.World enumerateChildNodesWithName:@"Close" usingBlock:^(SKNode *Node, BOOL *stop){
-            if (Node.position.x > Max_X){
-                Max_X = Node.position.x;
+        [self.World enumerateChildNodesWithName:@"Close" usingBlock:^(SKNode *Node, BOOL *stop){//Gets all nodes of the close type (differnet for other parallaxed nodes)...
+            if (Node.position.x > Max_X){   //If the recived position is greater than the current max...
+                Max_X = Node.position.x;    //Make the current max the recived max
             }
         }];
-        self.Current_P_X1 = Max_X + 85;
-    }else{
-        self.Current_P_X1 += 85;
+        self.Current_P_X1 = Max_X + 85; //Once the maximun x has been found, it is incremenented by 85. This method is to account for the movement of the terrian due to the parallax effect
+    }else{//If it is an inital generation...
+        self.Current_P_X1 += 85;//There is no reason to check if the max x is indeed the max x as the terrain isn't moving
     }
 
     int Rand = arc4random() % 20 + 10;
@@ -156,7 +155,7 @@ static const __UINT32_TYPE__ BackgroundCatagory= 0x1 << 7;
     }
 
 }
--(void)Generate_A_ParallaxMid:(Boolean)Initial_Gen{
+-(void)Generate_A_ParallaxMid:(Boolean)Initial_Gen{//Generates one mid parallax node
     
     if (!Initial_Gen){
         __block CGFloat Max_X;
@@ -191,15 +190,14 @@ static const __UINT32_TYPE__ BackgroundCatagory= 0x1 << 7;
     
     
     if (!Initial_Gen){ //Checks if the generated terrain needs a parallax effect
-    //Reused the move the world to reduce the level that the background moves
-    SKAction *Increment = [SKAction moveByX:13 y:0 duration:0.03];
-    SKAction *Move_The_World = [SKAction repeatActionForever:Increment];
-    [Layer2 runAction:Move_The_World withKey:@"Layer2Move"];
-        
+        //Reused the move the world to reduce the level that the background moves
+        SKAction *Increment = [SKAction moveByX:13 y:0 duration:0.03];
+        SKAction *Move_The_World = [SKAction repeatActionForever:Increment];
+        [Layer2 runAction:Move_The_World withKey:@"Layer2Move"];
     }
 
 }
--(void)Generate_A_ParallaxFar:(Boolean)Initial_Gen{
+-(void)Generate_A_ParallaxFar:(Boolean)Initial_Gen{//Generates one far parallax node
     
     if (!Initial_Gen){
         __block CGFloat Max_X;
@@ -231,10 +229,10 @@ static const __UINT32_TYPE__ BackgroundCatagory= 0x1 << 7;
     [self.World addChild:Layer3];
     
     if (!Initial_Gen){ //Checks if the generated terrain needs a parallax effect
-    //Reused the move the world to reduce the level that the background moves
-    SKAction *Increment = [SKAction moveByX:19 y:0 duration:0.03];
-    SKAction *Move_The_World = [SKAction repeatActionForever:Increment];
-    [Layer3 runAction:Move_The_World withKey:@"Layer3Move"];
+        //Reused the move the world to reduce the level that the background moves
+        SKAction *Increment = [SKAction moveByX:19 y:0 duration:0.03];
+        SKAction *Move_The_World = [SKAction repeatActionForever:Increment];
+        [Layer3 runAction:Move_The_World withKey:@"Layer3Move"];
     }
 
     
