@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,12 +18,47 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jet Game" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hXZ-Tx-8jC">
+                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="32"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Andrew Moore" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eHz-OJ-aYC">
+                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="201042893" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v5x-0r-M4S">
+                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Jet.png" highlightedImage="Jet.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZAs-j3-6rI">
+                                <rect key="contentStretch" x="0.0" y="0.0" width="0.45000000000000001" height="0.45000000000000001"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ZAs-j3-6rI" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="-16" id="EEC-cP-kWL"/>
+                            <constraint firstItem="ZAs-j3-6rI" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="RfG-R3-7yZ"/>
+                            <constraint firstItem="eHz-OJ-aYC" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="SYR-tb-IDx"/>
+                            <constraint firstItem="eHz-OJ-aYC" firstAttribute="top" secondItem="ZAs-j3-6rI" secondAttribute="bottom" constant="-4" id="WpD-rH-50M"/>
+                            <constraint firstItem="hXZ-Tx-8jC" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="eIY-oG-2mC"/>
+                            <constraint firstItem="ZAs-j3-6rI" firstAttribute="top" secondItem="hXZ-Tx-8jC" secondAttribute="bottom" constant="21" id="hPA-m2-3b2"/>
+                            <constraint firstItem="ZAs-j3-6rI" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="j6D-bZ-d3z"/>
+                            <constraint firstItem="v5x-0r-M4S" firstAttribute="top" secondItem="eHz-OJ-aYC" secondAttribute="bottom" constant="21" id="lZU-S4-3ZI"/>
+                            <constraint firstItem="v5x-0r-M4S" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="qnv-XE-ToA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ZAs-j3-6rI" secondAttribute="trailing" constant="-16" id="t9O-ps-bK3"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Jet.png" width="650" height="170"/>
+    </resources>
 </document>

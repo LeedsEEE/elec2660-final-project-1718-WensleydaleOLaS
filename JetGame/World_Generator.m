@@ -19,9 +19,9 @@ static const __UINT32_TYPE__ OceanCatagory= 0x1 << 3;
 static const __UINT32_TYPE__ BackgroundCatagory= 0x1 << 7;
 
 
-+(id)Inital_Generate_World:(SKNode *)World{
++(id)Inital_Generate_World:(SKNode *)World{//Called at the initalisation of the class
     
-    
+    //Sets all the inital values
     World_Generator *Generator = [World_Generator node];
     Generator.Current_X = -1000;
     Generator.Current_Rock_X = 100;
@@ -37,16 +37,16 @@ static const __UINT32_TYPE__ BackgroundCatagory= 0x1 << 7;
 
 //removed Continious Generate as it wasn't needed in the end
 
-- (void)Initallise_Ocean{
-    for( int i =0; i < 3; i++){
-        [self Generate_A_Rock];
-        for (int j = 0; j < 8; j++){            
-            [self Generate_A_Cloud];
-            [self Generate_A_Ocean];
-            [self Generate_A_ParallaxFar:true];
-            [self Generate_A_ParallaxMid:true];
-            [self Generate_A_ParallaxClose:true];
-        }
+- (void)Initallise_Ocean{//The inital generation of the terrian
+    for( int i =0; i < 2; i++){
+        [self Generate_A_Rock];//Less generations of rocks are needed as they are not on screen very often
+    }
+    for (int j = 0; j < 13; j++){//13 generations guarantees the screen is filled by the terrian
+        [self Generate_A_Cloud];
+        [self Generate_A_Ocean];
+        [self Generate_A_ParallaxFar:true];//The 'true' value being passed tells the function that this is an intial generation of terrian so no parallax is required
+        [self Generate_A_ParallaxMid:true];
+        [self Generate_A_ParallaxClose:true];
     }
 }
 
@@ -106,7 +106,7 @@ static const __UINT32_TYPE__ BackgroundCatagory= 0x1 << 7;
     SKSpriteNode *Cloud = [SKSpriteNode spriteNodeWithImageNamed:[NSString stringWithFormat:@"Cloud%i.png",RandImg]];
     
     Cloud.position = CGPointMake(self.Current_Cloud_X, 200);
-    Cloud.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(800, 400)];
+    Cloud.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(0, 0)];
     Cloud.xScale = Rand / 800.0; //scales the image to the randomly generated cloud size
     //NSLog(@"Poop!$!$: %i",Rand);    For checking the maths was correct, just needed a .0 at the end to stop it counting the 800 as an int and as a float instead
     // float temp = Rand / 800.0;
@@ -114,7 +114,7 @@ static const __UINT32_TYPE__ BackgroundCatagory= 0x1 << 7;
     Cloud.yScale = Rand2 / 400.0;
     Cloud.physicsBody.dynamic = NO;
     Cloud.name = @"Cloud";
-    Cloud.zPosition = -1;
+    Cloud.zPosition = 1;
     Cloud.physicsBody.categoryBitMask = CloudCatagory;
     [self.World addChild:Cloud];
     
@@ -153,7 +153,7 @@ static const __UINT32_TYPE__ BackgroundCatagory= 0x1 << 7;
     
     [self.World addChild:Layer1];
     
-    if (self.Need_Parallax){ //Checks if the generated terrain needs a parallax effect
+    if (!Initial_Gen){ //Checks if the generated terrain needs a parallax effect
         //Reused the move the world to reduce the level that the background moves
         SKAction *Increment = [SKAction moveByX:5 y:0 duration:0.03];
         SKAction *Move_The_World = [SKAction repeatActionForever:Increment];
@@ -195,7 +195,7 @@ static const __UINT32_TYPE__ BackgroundCatagory= 0x1 << 7;
     [self.World addChild:Layer2];
     
     
-    if (self.Need_Parallax){ //Checks if the generated terrain needs a parallax effect
+    if (!Initial_Gen){ //Checks if the generated terrain needs a parallax effect
     //Reused the move the world to reduce the level that the background moves
     SKAction *Increment = [SKAction moveByX:13 y:0 duration:0.03];
     SKAction *Move_The_World = [SKAction repeatActionForever:Increment];
@@ -235,7 +235,7 @@ static const __UINT32_TYPE__ BackgroundCatagory= 0x1 << 7;
     Layer3.physicsBody.categoryBitMask = BackgroundCatagory;
     [self.World addChild:Layer3];
     
-    if (self.Need_Parallax){ //Checks if the generated terrain needs a parallax effect
+    if (!Initial_Gen){ //Checks if the generated terrain needs a parallax effect
     //Reused the move the world to reduce the level that the background moves
     SKAction *Increment = [SKAction moveByX:19 y:0 duration:0.03];
     SKAction *Move_The_World = [SKAction repeatActionForever:Increment];

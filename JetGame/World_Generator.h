@@ -9,7 +9,6 @@
 #import <SpriteKit/SpriteKit.h>
 
 @interface World_Generator : SKSpriteNode
-@property Boolean Need_Parallax;
 @property double Current_X;
 @property double Current_Rock_X;
 @property double Current_Cloud_X;
@@ -17,6 +16,7 @@
 @property double Current_P_X2;
 @property double Current_P_X3;
 //Removed Properties that are not needed due to how the spirtenodes work
+//Removed a boolean property as it was no longer required due to reworking of methods
 @property SKNode *World;
 @property NSInteger WetWidth;
 +(id)Inital_Generate_World:(SKNode *)World;
