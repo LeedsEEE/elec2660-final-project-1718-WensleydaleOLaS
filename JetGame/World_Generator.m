@@ -50,15 +50,13 @@ static const __UINT32_TYPE__ BackgroundCatagory= 0x1 << 7;
     }
 }
 
-- (void)Generate_A_Ocean{
+- (void)Generate_A_Ocean{//Generates one ocean node, all terrian nodes follow the same basic generation with minor differenences
     
     int RandImg = (arc4random() % 3 )+ 1; // Used to select a random image from the selection to give variety to the background
     
-    SKSpriteNode *Ocean = [SKSpriteNode spriteNodeWithImageNamed:[NSString stringWithFormat:@"Ocean%i.png",RandImg]];
-   // Ocean.xScale = 0.14;
-   // Ocean.yScale = 0.14;
+    SKSpriteNode *Ocean = [SKSpriteNode spriteNodeWithImageNamed:[NSString stringWithFormat:@"Ocean%i.png",RandImg]];//Sets up the node with the selected image
     
-    Ocean.position = CGPointMake(self.Current_X, -170);
+    Ocean.position = CGPointMake(self.Current_X, -170); //Sets up the node on the
     Ocean.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.WetWidth, 5)];
     Ocean.physicsBody.dynamic = NO;
     Ocean.name = @"Ocean";
@@ -108,9 +106,6 @@ static const __UINT32_TYPE__ BackgroundCatagory= 0x1 << 7;
     Cloud.position = CGPointMake(self.Current_Cloud_X, 200);
     Cloud.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(0, 0)];
     Cloud.xScale = Rand / 800.0; //scales the image to the randomly generated cloud size
-    //NSLog(@"Poop!$!$: %i",Rand);    For checking the maths was correct, just needed a .0 at the end to stop it counting the 800 as an int and as a float instead
-    // float temp = Rand / 800.0;
-    // NSLog(@"Things!$!$: %f",temp);
     Cloud.yScale = Rand2 / 400.0;
     Cloud.physicsBody.dynamic = NO;
     Cloud.name = @"Cloud";

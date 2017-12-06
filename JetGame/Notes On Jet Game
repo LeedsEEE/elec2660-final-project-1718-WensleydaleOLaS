@@ -1,0 +1,24 @@
+--IMPORTANT--
+**SOME EMULATORS DON'T LIKE MANY NODES ON SCREEN AT A TIME (eg iPhone 7 plus) SO THERE ARE POPPING ISSUES, THIS WOULD NOT BE A PROBLEM ON AN ACTUAL PHONE**
+--IMPORTANT--
+
+App is only designed for iPhones, iPads aspect ratio does not work
+
+Layers:
+-5 | ParralaxFar
+-4 | ParralaxMid
+-3 | ParralaxClose
+-2 |
+-1 | Rocks, Player
+ 0 |
++1 | Ocean, Clouds
++2 |
++3 | UI
+
+
+BitMasks:
+RockCatagory        |   1
+CloudCatagory       |   2
+BoomCatagory        |   4
+BackgroundCatagory  |   7
+PlayerCatagory      |   10

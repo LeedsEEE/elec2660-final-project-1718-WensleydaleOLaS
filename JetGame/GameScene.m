@@ -60,35 +60,32 @@ static const __UINT32_TYPE__ BoomCatagory= 0x1 << 4;
 
     SKLabelNode *TouchToStart = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
     TouchToStart.position = CGPointMake(0, 0);
-    TouchToStart.zPosition=8;
+    TouchToStart.zPosition=3;
     TouchToStart.text= @"Touch to start";
     TouchToStart.name= @"Touch_To_Start";
     [World addChild:TouchToStart];
     
     SKLabelNode *Cloud_Help = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
     Cloud_Help.position = CGPointMake(-220, 150);
-    Cloud_Help.zPosition=8;
+    Cloud_Help.zPosition=3;
     Cloud_Help.text= @"Hit clouds, lose points!";
     Cloud_Help.fontSize = 20;
     Cloud_Help.name= @"Cloud_Help";
-    Cloud_Help.fontColor = [UIColor redColor];
     [World addChild:Cloud_Help];
     
     SKLabelNode *Ocean_Help = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
     Ocean_Help.position = CGPointMake(-220, -170);
-    Ocean_Help.zPosition=8;
+    Ocean_Help.zPosition=3;
     Ocean_Help.text= @"Don't hit the water!";
     Ocean_Help.fontSize = 20;
     Ocean_Help.name= @"Ocean_Help";
-    Ocean_Help.fontColor = [UIColor redColor];
     [World addChild:Ocean_Help];
     
     SKLabelNode *Rock_Help = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-    Rock_Help.position = CGPointMake(220, -120);
-    Rock_Help.zPosition=8;
+    Rock_Help.position = CGPointMake(220, -100);
+    Rock_Help.zPosition=3;
     Rock_Help.text= @"Watch out for rocks!";
     Rock_Help.fontSize = 20;
-    Rock_Help.fontColor = [UIColor redColor];
     Rock_Help.name= @"Rock_Help";
     [World addChild:Rock_Help];
 
@@ -124,21 +121,21 @@ static const __UINT32_TYPE__ BoomCatagory= 0x1 << 4;
     //All label nodes are set up in the same way
     SKLabelNode *Score1 = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];//Generates a node and sets a font...
     Score1.position = CGPointMake(220, 130);//Then sets a position...
-    Score1.zPosition=8;//Sets a high Z posistion so it is above all the game layers...
+    Score1.zPosition=3;//Sets a high Z posistion so it is above all the game layers...
     Score1.text= [NSString stringWithFormat:@"1st: %li", (long)High1];//Sets the text in the label node...
     Score1.name= @"Score1";//Gives it a name so it can be edited later if needed...
     [World addChild:Score1];//Adds it to the world so that it is generated
     
     SKLabelNode *Score2 = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
     Score2.position = CGPointMake(220, 100);
-    Score2.zPosition=8;
+    Score2.zPosition=3;
     Score2.text= [NSString stringWithFormat:@"2nd: %li", (long)High2];
     Score2.name= @"Score2";
     [World addChild:Score2];
     
     SKLabelNode *Score3 = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
     Score3.position = CGPointMake(220, 70);
-    Score3.zPosition=8;
+    Score3.zPosition=3;
     Score3.text= [NSString stringWithFormat:@"3rd: %li", (long)High3];
     Score3.name= @"Score3";
     [World addChild:Score3];
@@ -157,7 +154,7 @@ static const __UINT32_TYPE__ BoomCatagory= 0x1 << 4;
     Score = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];//Generates the current points label
     Score.position = CGPointMake(-50, 180);
     Score.text = @"Score: 0";
-    Score.zPosition=6;
+    Score.zPosition=4;
     Score.name = @"Point_Label";
     [World addChild:Score];
     
@@ -179,14 +176,14 @@ static const __UINT32_TYPE__ BoomCatagory= 0x1 << 4;
     SKLabelNode *GameOver = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
     GameOver.position = CGPointMake(Jet.position.x, 100);;
     GameOver.text = @"GAME OVER";
-    GameOver.zPosition=7;
+    GameOver.zPosition=3;
     GameOver.name = @"Game_Over_Label";
     [World addChild:GameOver];
     
     SKLabelNode *TouchToResume = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
     TouchToResume.position = CGPointMake(Jet.position.x, -50);;
     TouchToResume.text = @"Touch to return to menu";
-    TouchToResume.zPosition=7;
+    TouchToResume.zPosition=3;
     TouchToResume.name = @"Game_Over_Label";
     [World addChild:TouchToResume];
 

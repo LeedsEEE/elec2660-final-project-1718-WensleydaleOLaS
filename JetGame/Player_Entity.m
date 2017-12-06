@@ -60,18 +60,16 @@ static const __UINT32_TYPE__ BackgroundCatagory= 0x1 << 7;
     
     //I could not get the player entity to recognise the cloud or ocean catagory corretly, it would allways collide with them
     
-    player_entity.physicsBody.categoryBitMask = PlayerCatagory;
-    player_entity.physicsBody.contactTestBitMask = RockCatagory | ~CloudCatagory| ~OceanCatagory | ~BackgroundCatagory | ~BoomCatagory;
-    player_entity.physicsBody.collisionBitMask = ~OceanCatagory | RockCatagory | ~CloudCatagory | ~BackgroundCatagory | ~BoomCatagory;
-    player_entity.physicsBody.dynamic = NO;
-    player_entity.zPosition = -1;
+    player_entity.physicsBody.categoryBitMask = PlayerCatagory; //Sets the player's bit mask for collisons
+    player_entity.physicsBody.contactTestBitMask = RockCatagory | ~CloudCatagory| ~OceanCatagory | ~BackgroundCatagory | ~BoomCatagory; //Tells the player what it can detect a collision with (~ = not)
+    player_entity.physicsBody.collisionBitMask = ~OceanCatagory | RockCatagory | ~CloudCatagory | ~BackgroundCatagory | ~BoomCatagory; //Tells the player what it can actually collide with, not just detect a collision, same rules for 'not' as previous
+    player_entity.physicsBody.dynamic = NO;//Locks the player in posistion until it is ready to move
+    player_entity.zPosition = -1;//Sets it behind some of the terrian
     return player_entity;
 }
 
 -(void)Boost{//Moves the player up
-    /*SKAction *MoveUp = [SKAction moveByX:0 y:30 duration:0.2];
-    [self runAction:MoveUp];*/
-    [self.physicsBody applyImpulse:CGVectorMake(0,10)];
+    [self.physicsBody applyImpulse:CGVectorMake(0,10)];//Applys the move up impulse
 }
 
 -(void)Start_The_Move{//Starts the constant movement of the jet
@@ -82,15 +80,14 @@ static const __UINT32_TYPE__ BackgroundCatagory= 0x1 << 7;
 }
 
 -(void)Stop_The_Move{//Stops moving the jet continiously and applies on last impulse
-    [self removeActionForKey:@"Mover"];
-    [self.physicsBody applyImpulse:CGVectorMake(10,0)];
-    [self setTexture:[SKTexture textureWithImageNamed:@"Jet.png"]];
-    // self.physicsBody.dynamic = NO;
+    [self removeActionForKey:@"Mover"];//Removes the contunious action, stopping it in the process
+    [self.physicsBody applyImpulse:CGVectorMake(10,0)];//Adds one last impulse
+    [self setTexture:[SKTexture textureWithImageNamed:@"Jet.png"]];//Sets it so that the jet flame goes out as the player is dead
 }
 
 
 -(void)Animate:(NSInteger)Frame{ //Frame is the frame of the animation
-    [self setTexture:[SKTexture textureWithImageNamed:[NSString stringWithFormat:@"Jet%li.png",(long)Frame]]];
+    [self setTexture:[SKTexture textureWithImageNamed:[NSString stringWithFormat:@"Jet%li.png",(long)Frame]]];//Sets the jets texture changes so that a flicking exhaust effect is achived
 }
 
 @end
